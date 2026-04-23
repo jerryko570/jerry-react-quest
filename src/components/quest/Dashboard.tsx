@@ -1,22 +1,21 @@
 'use client'
 
 import { totalExamples, totalStages } from '@/data/stages'
-import { achievements } from '@/data/achievements'
+import { achievements, unlockedAchievementCount } from '@/data/achievements'
 import { completedCount, useProgress } from '@/lib/progress'
 
 type DashboardProps = {
   postsDone?: number
   postsTotal?: number
-  badgesDone?: number
 }
 
 export default function Dashboard({
   postsDone = 0,
   postsTotal = 11,
-  badgesDone = 0,
 }: DashboardProps) {
   const progress = useProgress()
   const stagesDone = completedCount(progress)
+  const badgesDone = unlockedAchievementCount(progress)
   const percent =
     totalStages === 0 ? 0 : Math.round((stagesDone / totalStages) * 100)
   const badgesTotal = achievements.length

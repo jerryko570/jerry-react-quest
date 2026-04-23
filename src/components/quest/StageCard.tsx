@@ -18,14 +18,17 @@ type StageCardProps = {
 export default function StageCard({ stage }: StageCardProps) {
   const progress = useProgress()
   const done = isCompleted(stage.id, progress)
-  const effectiveStatus = done ? 'completed' : stage.status
+  const playgroundReady = hasPlayground(stage.id)
+  // 놀이기구가 등록된 스테이지는 자동으로 '진행 가능' 처리
+  const baseStatus =
+    stage.status === 'locked' && playgroundReady ? 'active' : stage.status
+  const effectiveStatus = done ? 'completed' : baseStatus
   const statusIcon =
     effectiveStatus === 'completed'
       ? '✅'
       : effectiveStatus === 'active'
         ? '🔓'
         : '🔒'
-  const playgroundReady = hasPlayground(stage.id)
 
   return (
     <Link

@@ -1,9 +1,8 @@
 import Dashboard from '@/components/quest/Dashboard'
 import Legend from '@/components/quest/Legend'
 import QuestTabs from '@/components/quest/QuestTabs'
-import Achievement from '@/components/quest/Achievement'
+import AchievementGrid from '@/components/quest/Achievement'
 import { isCategoryId } from '@/data/stages'
-import { achievements } from '@/data/achievements'
 
 type HomeProps = {
   searchParams: Promise<{ tab?: string }>
@@ -33,13 +32,11 @@ export default async function Home({ searchParams }: HomeProps) {
       <section className='mb-12'>
         <header className='mb-6 border-b-2 border-gray-100 pb-4'>
           <h2 className='mb-1 text-2xl font-extrabold'>🏆 획득 뱃지</h2>
-          <p className='text-sm text-gray-500'>스테이지를 깨면 해금됩니다</p>
+          <p className='text-sm text-gray-500'>
+            스테이지를 깨면 자동으로 해금됩니다
+          </p>
         </header>
-        <div className='grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-6'>
-          {achievements.map((a) => (
-            <Achievement key={a.id} achievement={a} />
-          ))}
-        </div>
+        <AchievementGrid />
       </section>
     </div>
   )
