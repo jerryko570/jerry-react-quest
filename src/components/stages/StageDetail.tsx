@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { categoryMeta, type Stage } from '@/data/stages'
-import { playgrounds } from '@/data/playgrounds'
+import { hasPlayground, playgrounds } from '@/data/playgrounds'
 import {
   difficultyBadge,
   difficultyLabel,
@@ -50,7 +50,7 @@ export default function StageDetail({ stage }: Props) {
             </span>
           )}
           <span className='text-xs text-gray-500'>⏱ {stage.hours}시간</span>
-          {stage.status === 'locked' && (
+          {stage.status === 'locked' && !hasPlayground(stage.id) && (
             <span className='ml-2 text-xs font-bold text-gray-500'>
               🔒 잠김 — 미리보기
             </span>
