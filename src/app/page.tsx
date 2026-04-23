@@ -1,11 +1,18 @@
 import Dashboard from '@/components/quest/Dashboard'
 import Legend from '@/components/quest/Legend'
-import QuestSection from '@/components/quest/QuestSection'
+import QuestTabs from '@/components/quest/QuestTabs'
 import Achievement from '@/components/quest/Achievement'
-import { sections } from '@/data/stages'
+import { isCategoryId } from '@/data/stages'
 import { achievements } from '@/data/achievements'
 
-export default function Home() {
+type HomeProps = {
+  searchParams: Promise<{ tab?: string }>
+}
+
+export default async function Home({ searchParams }: HomeProps) {
+  const { tab } = await searchParams
+  const initialTab = isCategoryId(tab) ? tab : 'hooks'
+
   return (
     <div className='mx-auto max-w-240 px-6 py-12'>
       <section className='mb-14 text-center'>
@@ -21,9 +28,7 @@ export default function Home() {
       <Dashboard />
       <Legend />
 
-      {sections.map((section) => (
-        <QuestSection key={section.id} section={section} />
-      ))}
+      <QuestTabs initialTab={initialTab} />
 
       <section className='mb-12'>
         <header className='mb-6 border-b-2 border-gray-100 pb-4'>
