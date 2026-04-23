@@ -34,6 +34,33 @@
   /* Green */
   --green-500: #00e8bd;
 
+  /* Quest 전용 팔레트 — 게임 UI 의미 색상 */
+  --quest-bg: #fffbf5;
+  --quest-primary: #ff5e48;
+  --quest-primary-soft: #ffe8e3;
+  --quest-success: #10b981;
+  --quest-success-soft: #d1fae5;
+  --quest-warning: #f59e0b;
+  --quest-warning-soft: #fef3c7;
+  --quest-danger: #ef4444;
+  --quest-purple: #8b5cf6;
+  --quest-purple-soft: #ede9fe;
+  --quest-pink: #ec4899;
+  --quest-tutorial-bg: #dbeafe;
+  --quest-tutorial-fg: #1e40af;
+  --quest-easy-bg: #d1fae5;
+  --quest-easy-fg: #065f46;
+  --quest-medium-bg: #fef3c7;
+  --quest-medium-fg: #92400e;
+  --quest-hard-bg: #fee2e2;
+  --quest-hard-fg: #991b1b;
+  --quest-bonus-bg: #fce7f3;
+  --quest-bonus-fg: #be185d;
+  --quest-border: #f3f4f6;
+  --quest-border-strong: #e5e7eb;
+  --quest-text: #111827;
+  --quest-text-muted: #6b7280;
+
   /* Radius */
   --radius-sm: 1.125rem;
   --radius-md: 1.25rem;
@@ -70,9 +97,11 @@
 
 @theme {
   --font-sans:
-    ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    'Pretendard Variable', 'Pretendard', ui-sans-serif, system-ui,
+    -apple-system, 'Segoe UI', Roboto, sans-serif;
   --font-mono:
-    'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+    var(--font-jetbrains-mono), 'JetBrains Mono', ui-monospace, SFMono-Regular,
+    Menlo, Monaco, monospace;
 
   /* Grayscale */
   --color-gray-50: var(--gray-50);
@@ -130,4 +159,31 @@
   --color-surface-alt: var(--color-surface-alt);
   --color-on-surface: var(--color-on-surface);
   --color-on-surface-muted: var(--color-on-surface-muted);
+
+  /* Quest 전용 색상 토큰 */
+  --color-quest-bg: var(--quest-bg);
+  --color-quest-primary: var(--quest-primary);
+  --color-quest-primary-soft: var(--quest-primary-soft);
+  --color-quest-success: var(--quest-success);
+  --color-quest-success-soft: var(--quest-success-soft);
+  --color-quest-warning: var(--quest-warning);
+  --color-quest-warning-soft: var(--quest-warning-soft);
+  --color-quest-danger: var(--quest-danger);
+  --color-quest-purple: var(--quest-purple);
+  --color-quest-purple-soft: var(--quest-purple-soft);
+  --color-quest-pink: var(--quest-pink);
+  --color-quest-tutorial-bg: var(--quest-tutorial-bg);
+  --color-quest-tutorial-fg: var(--quest-tutorial-fg);
+  --color-quest-easy-bg: var(--quest-easy-bg);
+  --color-quest-easy-fg: var(--quest-easy-fg);
+  --color-quest-medium-bg: var(--quest-medium-bg);
+  --color-quest-medium-fg: var(--quest-medium-fg);
+  --color-quest-hard-bg: var(--quest-hard-bg);
+  --color-quest-hard-fg: var(--quest-hard-fg);
+  --color-quest-bonus-bg: var(--quest-bonus-bg);
+  --color-quest-bonus-fg: var(--quest-bonus-fg);
+  --color-quest-border: var(--quest-border);
+  --color-quest-border-strong: var(--quest-border-strong);
+  --color-quest-text: var(--quest-text);
+  --color-quest-text-muted: var(--quest-text-muted);
 }
