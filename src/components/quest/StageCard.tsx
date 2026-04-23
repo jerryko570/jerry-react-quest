@@ -1,6 +1,9 @@
+'use client'
+
 import Link from 'next/link'
 import type { Stage } from '@/data/stages'
 import { hasPlayground } from '@/data/playgrounds'
+import { isCompleted, useProgress } from '@/lib/progress'
 import { cn } from '@/lib/cn'
 import {
   difficultyBadge,
@@ -13,10 +16,13 @@ type StageCardProps = {
 }
 
 export default function StageCard({ stage }: StageCardProps) {
+  const progress = useProgress()
+  const done = isCompleted(stage.id, progress)
+  const effectiveStatus = done ? 'completed' : stage.status
   const statusIcon =
-    stage.status === 'completed'
+    effectiveStatus === 'completed'
       ? '✅'
-      : stage.status === 'active'
+      : effectiveStatus === 'active'
         ? '🔓'
         : '🔒'
   const playgroundReady = hasPlayground(stage.id)
@@ -26,13 +32,21 @@ export default function StageCard({ stage }: StageCardProps) {
       href={`/stages/${stage.id}`}
       aria-label={`${stage.title} 상세로 이동`}
       className={cn(
-        stageCardVariants({ status: stage.status, boss: stage.isBoss }),
+        stageCardVariants({ status: effectiveStatus, boss: stage.isBoss }),
         'block focus-visible:ring-2 focus-visible:ring-[#ff5e48] focus-visible:outline-none',
-        stage.status === 'locked' && 'hover:translate-y-0 hover:shadow-none'
+        effectiveStatus === 'locked' && 'hover:translate-y-0 hover:shadow-none'
       )}
     >
       {stage.isBoss && (
-        <div className='absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[#8b5cf6] via-[#ec4899] to-[#f59e0b]' />
+        <div className='absolute inset-x-0 top-0 h-1 bg-linear-to-r from-[#8b5cf6] via-[#ec4899] to-[#f59e0b]' />
+      )}
+      {done && (
+        <div
+          aria-hidden
+          className='pointer-events-none absolute top-3 right-4 -rotate-12 rounded-md border-2 border-emerald-500 px-3 py-1 font-mono text-sm font-black tracking-wider text-emerald-500 opacity-90'
+        >
+          CLEAR!
+        </div>
       )}
 
       <header className='mb-4 flex items-start justify-between gap-3'>
@@ -49,7 +63,7 @@ export default function StageCard({ stage }: StageCardProps) {
               >
                 {difficultyLabel[stage.difficulty]}
               </span>
-              {stage.highlight && (
+              {stage.highlight && !done && (
                 <span className='text-xs font-bold text-[#ff5e48]'>
                   {stage.highlight}
                 </span>
@@ -71,7 +85,7 @@ export default function StageCard({ stage }: StageCardProps) {
         <Bullets title={`🎮 ${stage.examplesLabel}`} items={stage.examples} />
       </div>
 
-      {stage.progress && (
+      {stage.progress && !done && (
         <footer className='mt-4 flex items-center justify-between border-t border-gray-100 pt-4 text-sm text-gray-500'>
           <span>{stage.progress.label}</span>
           <div className='flex items-center gap-2'>

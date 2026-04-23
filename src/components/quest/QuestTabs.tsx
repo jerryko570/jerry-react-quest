@@ -8,6 +8,7 @@ import {
   type CategoryId,
   type Stage,
 } from '@/data/stages'
+import { completedInCategory, useProgress } from '@/lib/progress'
 import { cn } from '@/lib/cn'
 import StageCard from './StageCard'
 
@@ -18,6 +19,7 @@ type QuestTabsProps = {
 export default function QuestTabs({ initialTab }: QuestTabsProps) {
   const router = useRouter()
   const [tab, setTab] = useState<CategoryId>(initialTab)
+  const progress = useProgress()
 
   const activeMeta = categoryMeta.find((c) => c.id === tab) ?? categoryMeta[0]
   const visible = allStages.filter((s) => s.category === tab)
@@ -35,13 +37,19 @@ export default function QuestTabs({ initialTab }: QuestTabsProps) {
         className='-mx-2 mb-6 flex flex-wrap gap-2 overflow-x-auto px-2'
       >
         {categoryMeta.map((meta) => {
-          const count = allStages.filter((s) => s.category === meta.id).length
+          const inCategory = allStages.filter((s) => s.category === meta.id)
+          const total = inCategory.length
+          const done = completedInCategory(
+            progress,
+            inCategory.map((s) => s.id)
+          )
           const isActive = meta.id === tab
           return (
             <TabButton
               key={meta.id}
               meta={meta}
-              count={count}
+              done={done}
+              total={total}
               isActive={isActive}
               onSelect={handleSelect}
             />
@@ -66,15 +74,18 @@ export default function QuestTabs({ initialTab }: QuestTabsProps) {
 
 function TabButton({
   meta,
-  count,
+  done,
+  total,
   isActive,
   onSelect,
 }: {
   meta: (typeof categoryMeta)[number]
-  count: number
+  done: number
+  total: number
   isActive: boolean
   onSelect: (id: CategoryId) => void
 }) {
+  const cleared = total > 0 && done === total
   return (
     <button
       type='button'
@@ -84,12 +95,15 @@ function TabButton({
         'inline-flex shrink-0 items-center gap-2 rounded-full border-2 px-4 py-2 text-sm font-bold transition-all duration-200',
         isActive
           ? 'border-[#ff5e48] bg-[#ff5e48] text-white shadow-[0_4px_12px_-4px_rgba(255,94,72,0.5)]'
-          : 'border-gray-200 bg-white text-gray-700 hover:border-[#ff5e48] hover:text-[#ff5e48]'
+          : cleared
+            ? 'border-emerald-400 bg-emerald-50 text-emerald-800 hover:bg-emerald-100'
+            : 'border-gray-200 bg-white text-gray-700 hover:border-[#ff5e48] hover:text-[#ff5e48]'
       )}
     >
       <span>{meta.emoji}</span>
       <span>{meta.label}</span>
-      {meta.badge && (
+      {cleared && !isActive && <span className='text-xs'>👑</span>}
+      {meta.badge && !cleared && (
         <span
           className={cn('text-xs', isActive ? 'text-white' : 'text-[#ff5e48]')}
         >
@@ -99,10 +113,14 @@ function TabButton({
       <span
         className={cn(
           'rounded-full px-1.5 font-mono text-[11px]',
-          isActive ? 'bg-white/20 text-white' : 'bg-gray-100 text-gray-500'
+          isActive
+            ? 'bg-white/20 text-white'
+            : cleared
+              ? 'bg-emerald-200 text-emerald-900'
+              : 'bg-gray-100 text-gray-500'
         )}
       >
-        {count}
+        {done}/{total}
       </span>
     </button>
   )

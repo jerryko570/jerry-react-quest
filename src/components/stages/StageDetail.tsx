@@ -5,6 +5,7 @@ import {
   difficultyBadge,
   difficultyLabel,
 } from '@/components/quest/StageCard.variants'
+import CompleteButton from './CompleteButton'
 import PlaygroundPlaceholder from './PlaygroundPlaceholder'
 
 type Props = {
@@ -76,6 +77,10 @@ export default function StageDetail({ stage }: Props) {
         ) : (
           <PlaygroundPlaceholder stageTitle={stage.title} />
         )}
+      </section>
+
+      <section className='mt-10'>
+        <CompleteButton stageId={stage.id} />
       </section>
 
       <div className='mt-10 flex justify-center'>
