@@ -1,4 +1,6 @@
+import Link from 'next/link'
 import type { Stage } from '@/data/stages'
+import { hasPlayground } from '@/data/playgrounds'
 import { cn } from '@/lib/cn'
 import {
   difficultyBadge,
@@ -17,11 +19,15 @@ export default function StageCard({ stage }: StageCardProps) {
       : stage.status === 'active'
         ? '🔓'
         : '🔒'
+  const playgroundReady = hasPlayground(stage.id)
 
   return (
-    <article
+    <Link
+      href={`/stages/${stage.id}`}
+      aria-label={`${stage.title} 상세로 이동`}
       className={cn(
         stageCardVariants({ status: stage.status, boss: stage.isBoss }),
+        'block focus-visible:ring-2 focus-visible:ring-[#ff5e48] focus-visible:outline-none',
         stage.status === 'locked' && 'hover:translate-y-0 hover:shadow-none'
       )}
     >
@@ -49,6 +55,11 @@ export default function StageCard({ stage }: StageCardProps) {
                 </span>
               )}
               <span className='text-xs text-gray-500'>⏱ {stage.hours}시간</span>
+              {playgroundReady && (
+                <span className='inline-flex items-center gap-1 rounded-full bg-emerald-500 px-2 py-0.5 text-[10px] font-bold text-white'>
+                  🕹️ 플레이 가능
+                </span>
+              )}
             </div>
           </div>
         </div>
@@ -80,7 +91,7 @@ export default function StageCard({ stage }: StageCardProps) {
           </div>
         </footer>
       )}
-    </article>
+    </Link>
   )
 }
 
