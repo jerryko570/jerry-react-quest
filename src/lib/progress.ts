@@ -10,9 +10,12 @@ export type Progress = {
 
 const emptyProgress: Progress = { completedAt: {} }
 
+let cachedSnapshot: Progress = emptyProgress
+let initialized = false
+
 const listeners = new Set<() => void>()
 
-function readFromStorage(): Progress {
+function parseFromStorage(): Progress {
   if (typeof window === 'undefined') return emptyProgress
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY)
@@ -30,8 +33,22 @@ function readFromStorage(): Progress {
   }
 }
 
+function getSnapshot(): Progress {
+  if (!initialized && typeof window !== 'undefined') {
+    cachedSnapshot = parseFromStorage()
+    initialized = true
+  }
+  return cachedSnapshot
+}
+
+function getServerSnapshot(): Progress {
+  return emptyProgress
+}
+
 function writeToStorage(next: Progress): void {
   if (typeof window === 'undefined') return
+  cachedSnapshot = next
+  initialized = true
   window.localStorage.setItem(STORAGE_KEY, JSON.stringify(next))
   listeners.forEach((fn) => fn())
 }
@@ -39,7 +56,11 @@ function writeToStorage(next: Progress): void {
 function subscribe(fn: () => void): () => void {
   listeners.add(fn)
   const onStorage = (e: StorageEvent) => {
-    if (e.key === STORAGE_KEY) fn()
+    if (e.key === STORAGE_KEY) {
+      // 다른 탭에서 변경 → 캐시 리프레시 후 알림
+      cachedSnapshot = parseFromStorage()
+      fn()
+    }
   }
   if (typeof window !== 'undefined') {
     window.addEventListener('storage', onStorage)
@@ -53,11 +74,11 @@ function subscribe(fn: () => void): () => void {
 }
 
 export function useProgress(): Progress {
-  return useSyncExternalStore(subscribe, readFromStorage, () => emptyProgress)
+  return useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot)
 }
 
 export function markCompleted(stageId: string): void {
-  const current = readFromStorage()
+  const current = getSnapshot()
   writeToStorage({
     ...current,
     completedAt: {
@@ -68,7 +89,7 @@ export function markCompleted(stageId: string): void {
 }
 
 export function unmarkCompleted(stageId: string): void {
-  const current = readFromStorage()
+  const current = getSnapshot()
   const next = { ...current.completedAt }
   delete next[stageId]
   writeToStorage({ ...current, completedAt: next })
