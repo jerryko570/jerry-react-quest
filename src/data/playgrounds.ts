@@ -11,6 +11,10 @@ import UseEffectPlayground from '@/components/playgrounds/useeffect'
 import CustomHooksPlayground from '@/components/playgrounds/custom-hooks'
 import UseRefPlayground from '@/components/playgrounds/useref'
 import ErrorBoundaryPlayground from '@/components/playgrounds/error-boundary'
+import UseContextPlayground from '@/components/playgrounds/usecontext'
+import UseReducerPlayground from '@/components/playgrounds/usereducer'
+import TanStackQueryPlayground from '@/components/playgrounds/tanstack-query'
+import StateLibsPlayground from '@/components/playgrounds/state-libs'
 
 export const playgrounds: Record<string, ComponentType> = {
   // 🎣 훅
@@ -27,6 +31,11 @@ export const playgrounds: Record<string, ComponentType> = {
   'stage-react-compiler': ReactCompilerPlayground,
   'boss-rendering': BossRenderingPlayground,
   'stage-perf-advanced': PerfAdvancedPlayground,
+  // 🗂 상태 관리
+  'stage-9-usecontext': UseContextPlayground,
+  'stage-10-usereducer': UseReducerPlayground,
+  'stage-tanstack-query': TanStackQueryPlayground,
+  'stage-state-libs': StateLibsPlayground,
 }
 
 export const hasPlayground = (stageId: string): boolean =>
