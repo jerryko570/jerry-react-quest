@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# jerry-react-quest
 
-## Getting Started
+🎮 React를 퀘스트처럼 정복하는 인터랙티브 학습 사이트
 
-First, run the development server:
+> 디자이너가 만드는 React 인터랙티브 학습 사이트
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+[![배포 사이트](https://img.shields.io/badge/배포-Vercel-black)](...)
+[![블로그](https://img.shields.io/badge/블로그-Jerry's_blog-orange)](...)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📌 소개
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+"모던 리액트 Deep Dive" 책을 공부하면서 만든 **인터랙티브 예제 모음**입니다.  
+디자이너 출신 프론트엔드 개발자 관점에서 React 훅을 **직접 눈으로 보고 조작**하며 배울 수 있도록 만들었습니다.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## ✨ 특징
 
-## Learn More
+- 🎯 **각 훅별 인터랙티브 예제** — 버튼 눌러보며 체감
+- 🔄 **Before/After 비교** — 최적화 전후 렌더링 횟수 직관적 비교
+- 🧪 **퀴즈 & 시나리오** — "이 상황에 useMemo 쓸까?" 훈련
+- 📚 **블로그 연동** — [Jerry's blog](...) 심화 글 링크
 
-To learn more about Next.js, take a look at the following resources:
+## 🛠️ 기술 스택
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| 분류      | 기술                    |
+| --------- | ----------------------- |
+| Framework | Next.js 16 (App Router) |
+| Language  | TypeScript              |
+| Styling   | Tailwind CSS v4         |
+| Animation | Framer Motion           |
+| Deploy    | Vercel                  |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📂 구조
 
-## Deploy on Vercel
+...
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🗓️ 학습 진도
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [x] 3.1.3 useMemo
+- [x] 3.1.4 useCallback
+- [ ] 3.1.5 useRef
+- [ ] 3.1.6 useContext
+- [ ] 3.1.7 useReducer
+- [ ] 3.2 사용자 정의 훅
+
+## 🔗 링크
+
+- 🌐 [배포 사이트](https://jerry-react-dive.vercel.app)
+- 📝 [Jerry's blog](https://jerryko570.github.io)
+- 🎨 [포트폴리오](https://narae-ux-portfolio.vercel.app)
