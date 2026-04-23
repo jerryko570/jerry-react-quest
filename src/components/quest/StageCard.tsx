@@ -55,15 +55,9 @@ export default function StageCard({ stage }: StageCardProps) {
         <div className='shrink-0 text-2xl'>{statusIcon}</div>
       </header>
 
-      <div className='border-t border-gray-100 pt-4'>
-        <div className='mb-3 inline-block rounded-lg bg-gray-100 px-2.5 py-1 font-mono text-xs text-gray-500'>
-          📖 {stage.bookRef}
-        </div>
-
-        <div className='mt-4 grid gap-5 md:grid-cols-2'>
-          <Bullets title='🎯 학습 목표' items={stage.goals} />
-          <Bullets title={`🎮 ${stage.examplesLabel}`} items={stage.examples} />
-        </div>
+      <div className='grid gap-5 border-t border-gray-100 pt-4 md:grid-cols-2'>
+        <Bullets title='🎯 학습 목표' items={stage.goals} />
+        <Bullets title={`🎮 ${stage.examplesLabel}`} items={stage.examples} />
       </div>
 
       {stage.progress && (

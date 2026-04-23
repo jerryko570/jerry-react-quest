@@ -1,4 +1,4 @@
-import { allStages, totalExamples, totalStages } from '@/data/stages'
+import { totalExamples, totalStages } from '@/data/stages'
 import { achievements } from '@/data/achievements'
 
 type DashboardProps = {
@@ -20,9 +20,6 @@ export default function Dashboard({
     totalStages === 0 ? 0 : Math.round((stagesDone / totalStages) * 100)
   const badgesTotal = achievements.length
 
-  // allStages는 각 stage 메타 계산에 사용 (향후 확장용)
-  void allStages
-
   return (
     <section className='mb-12 rounded-3xl bg-gradient-to-br from-[#ff5e48] to-[#ff8a65] p-8 text-white shadow-[0_20px_40px_-20px_rgba(255,94,72,0.4)]'>
       <div className='mb-5 flex flex-wrap items-end justify-between gap-3'>
@@ -31,7 +28,7 @@ export default function Dashboard({
             ⚔️ 전체 진도
           </div>
           <div className='mt-1 text-sm opacity-85'>
-            책: 모던 리액트 Deep Dive
+            프론트엔드 디자이너의 React 정복 퀘스트
           </div>
         </div>
         <div className='font-mono text-5xl leading-none font-bold'>
