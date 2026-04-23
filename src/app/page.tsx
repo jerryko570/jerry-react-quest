@@ -18,7 +18,7 @@ export default async function Home({ searchParams }: HomeProps) {
       <section className='mb-14 text-center'>
         <div className='animate-quest-bounce mb-4 text-7xl'>🎮</div>
         <h1 className='mb-3 text-5xl font-black tracking-[-0.02em] sm:text-[56px]'>
-          React <span className='text-[#ff5e48]'>Quest</span>
+          React <span className='text-[#ff5e48]'>Playground</span>
         </h1>
         <p className='text-lg text-gray-500'>
           훅을 눌러보고, 망가뜨리고, 체화하는 놀이터
