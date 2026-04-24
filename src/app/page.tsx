@@ -42,6 +42,7 @@ export default async function Home({ searchParams }: HomeProps) {
         <SectionHeader
           badge='🗺 로드맵'
           title='어디서부터 시작해볼까?'
+          badgeTheme='blue'
           description='5개 탭 · 28개 스테이지 · 클리어 하면 뱃지 자동 해제'
         />
         <div className='mt-10'>
@@ -53,6 +54,7 @@ export default async function Home({ searchParams }: HomeProps) {
       <Section padding='lg' className='bg-white'>
         <SectionHeader
           badge='🏆 뱃지'
+          badgeTheme='blue'
           title='오늘 어디까지 왔어?'
           description='스테이지를 정복할 때마다 자동으로 해금돼'
         />
