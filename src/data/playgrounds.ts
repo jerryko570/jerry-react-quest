@@ -21,6 +21,12 @@ import AppRouterPlayground from '@/components/playgrounds/app-router'
 import NextjsRoutingPlayground from '@/components/playgrounds/nextjs-routing'
 import DataFetchingPlayground from '@/components/playgrounds/data-fetching'
 import AuthPatternsPlayground from '@/components/playgrounds/auth-patterns'
+import A11yPlayground from '@/components/playgrounds/a11y'
+import TestingPlayground from '@/components/playgrounds/testing'
+import RhfZodPlayground from '@/components/playgrounds/rhf-zod'
+import FramerMotionPlayground from '@/components/playgrounds/framer-motion'
+import ErrorArchitecturePlayground from '@/components/playgrounds/error-architecture'
+import DesignSystemPlayground from '@/components/playgrounds/design-system'
 
 export const playgrounds: Record<string, ComponentType> = {
   // 🎣 훅
@@ -49,6 +55,13 @@ export const playgrounds: Record<string, ComponentType> = {
   'stage-nextjs-routing': NextjsRoutingPlayground,
   'stage-data-fetching': DataFetchingPlayground,
   'stage-auth-patterns': AuthPatternsPlayground,
+  // 🛠 인프라
+  'stage-a11y': A11yPlayground,
+  'stage-testing': TestingPlayground,
+  'stage-rhf-zod': RhfZodPlayground,
+  'stage-framer-motion': FramerMotionPlayground,
+  'stage-error-architecture': ErrorArchitecturePlayground,
+  'stage-design-system': DesignSystemPlayground,
 }
 
 export const hasPlayground = (stageId: string): boolean =>
