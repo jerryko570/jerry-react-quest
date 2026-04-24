@@ -22,7 +22,7 @@ export default function SectionHeader({
   description,
   align = 'left',
   titleSize = 'h2',
-  badgeTheme = 'orange',
+  badgeTheme = 'blue',
   className,
 }: SectionHeaderProps) {
   const textAlign =
