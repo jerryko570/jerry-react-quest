@@ -6,18 +6,18 @@ type ChildProps = { id: string }
 
 function Child({ id }: ChildProps) {
   const renders = useRef(0)
+  // 교육용 렌더 카운터 — 의도적으로 렌더 중 ref 조작
   // eslint-disable-next-line react-hooks/refs
   renders.current += 1
+  // eslint-disable-next-line react-hooks/refs
+  const count = renders.current
   return (
     <div className='flex flex-col items-center gap-1 rounded-2xl bg-white p-5 text-center ring-1 ring-gray-200'>
       <span className='text-3xl'>{id}</span>
       <span className='text-[11px] font-semibold tracking-wider text-gray-500 uppercase'>
         내가 그려진 횟수
       </span>
-      {/* eslint-disable-next-line react-hooks/refs */}
-      <span className='font-mono text-3xl font-extrabold'>
-        {renders.current}
-      </span>
+      <span className='font-mono text-3xl font-extrabold'>{count}</span>
     </div>
   )
 }
