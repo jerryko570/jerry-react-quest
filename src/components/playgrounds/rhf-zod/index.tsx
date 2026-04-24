@@ -1,36 +1,54 @@
-import GoalViz from './GoalViz'
 import SignupForm from './SignupForm'
-import PlaygroundSection from '@/components/stages/PlaygroundSection'
+import CodeBlock from '@/components/stages/CodeBlock'
+import StageFlow from '@/components/stages/StageFlow'
 
 export default function RhfZodPlayground() {
   return (
-    <div className='flex flex-col gap-12'>
-      <div className='rounded-2xl bg-linear-to-br from-[#fff5f4] to-[#ffe8e3] p-5'>
-        <div className='flex items-start gap-3'>
-          <span className='text-3xl'>🎮</span>
-          <div>
-            <div className='font-extrabold'>실제 폼으로 검증 흐름 체험</div>
-            <p className='mt-1 text-sm text-gray-700'>
-              아래 회원가입 폼을 직접 채워봐. blur 시점에 검증, 제출 시 전체
-              검증, 비밀번호·확인이 서로 참조되는 상호 검증까지 — RHF + Zod가
-              대신 해주는 일을 native state로 재현했어.
-            </p>
-          </div>
-        </div>
-      </div>
+    <StageFlow>
+      <StageFlow.Empathy>
+        📝 &quot;필드 4개 폼에 state가 12개씩&quot; — RHF + Zod가 이걸 단번에.
+      </StageFlow.Empathy>
 
-      <GoalViz />
-
-      <div className='border-t border-gray-200' />
-
-      <PlaygroundSection
-        index='A'
-        emoji='📝'
-        title='회원가입 폼 — blur·제출·상호 검증'
-        description='입력 중엔 조용하고 blur 시점부터 에러 표시. 비밀번호와 비밀번호 확인의 상호 검증까지.'
-      >
+      <StageFlow.Play subtitle='회원가입 폼 채워보며 blur 유효성 체감'>
         <SignupForm />
-      </PlaygroundSection>
-    </div>
+      </StageFlow.Play>
+
+      <StageFlow.Observe title='🤔 RHF + Zod가 뭘 해줘?'>
+        <p>
+          🟢 Zod 스키마 하나가 <b>검증·타입·에러 메시지</b>를 모두 담당.
+        </p>
+        <p className='mt-3'>
+          🟢 RHF는 uncontrolled 기반이라 리렌더 최소화. <code>useForm</code> 한
+          번이면 끝.
+        </p>
+      </StageFlow.Observe>
+
+      <StageFlow.Next subtitle='코드 + 정리 + 다음'>
+        <p className='mb-4'>
+          ✔️ 같은 Zod 스키마를 <b>Server Action 검증에도 재사용</b> 가능.
+        </p>
+        <CodeBlock
+          filename='RHF + Zod 실전'
+          code={`const schema = z.object({
+  email: z.string().email(),
+  password: z.string().min(8),
+}).refine((d) => d.password === d.confirm, {
+  path: ['confirm'], message: '비밀번호가 일치하지 않아요',
+})
+
+const { register, handleSubmit, formState: { errors } } = useForm<z.infer<typeof schema>>({
+  resolver: zodResolver(schema),
+})
+
+<form onSubmit={handleSubmit(onValid)}>
+  <input {...register('email')} />
+  {errors.email && <p>{errors.email.message}</p>}
+</form>`}
+        />
+        <p className='mt-5 text-gray-700'>
+          다음은 UI를 살아있게 <b>Framer Motion</b> 🚀
+        </p>
+      </StageFlow.Next>
+    </StageFlow>
   )
 }

@@ -1,38 +1,53 @@
 import CallbackTrap from './CallbackTrap'
-import GoalViz from './GoalViz'
-import PlaygroundSection from '@/components/stages/PlaygroundSection'
+import CodeBlock from '@/components/stages/CodeBlock'
+import StageFlow from '@/components/stages/StageFlow'
 
 export default function UseCallbackPlayground() {
   return (
-    <div className='flex flex-col gap-12'>
-      <div className='rounded-2xl bg-linear-to-br from-[#fff5f4] to-[#ffe8e3] p-5'>
-        <div className='flex items-start gap-3'>
-          <span className='text-3xl'>🎮</span>
-          <div>
-            <div className='font-extrabold'>
-              memo 자식에 콜백 넘길 때 같이 온다
-            </div>
-            <p className='mt-1 text-sm text-gray-700'>
-              좌우 자식 모두 memo야. 어느 쪽이 리렌더를 먹고 어느 쪽이
-              스킵하는지, 🎲 부모 리렌더 버튼을 연타하며 카운트 차이를 직접
-              느껴봐.
-            </p>
-          </div>
-        </div>
-      </div>
+    <StageFlow>
+      <StageFlow.Empathy>
+        🪞 &quot;memo로 감쌌는데 자식이 계속 리렌더돼&quot; — useCallback이
+        짝으로 있어야 memo가 일해.
+      </StageFlow.Empathy>
 
-      <GoalViz />
-
-      <div className='border-t border-gray-200' />
-
-      <PlaygroundSection
-        index='A'
-        emoji='🪞'
-        title='Fresh vs Stable 콜백 참조 비교'
-        description='같은 memo 자식 2개. 한 쪽엔 매 렌더마다 새 함수, 한 쪽엔 useCallback으로 고정. 카운트가 갈라지는 걸 눈으로 확인.'
-      >
+      <StageFlow.Play subtitle='🎲 부모 리렌더 버튼 연타. 좌우 자식 카운트 차이를 봐'>
         <CallbackTrap />
-      </PlaygroundSection>
-    </div>
+      </StageFlow.Play>
+
+      <StageFlow.Observe
+        title='🤔 왜 한쪽 자식만 숫자가 올라가지?'
+        subtitle='둘 다 memo로 감쌌는데'
+      >
+        <p>
+          🟢 Fresh 콜백은 <b>매 렌더마다 새 함수</b>라 memo가 &quot;props
+          다름&quot; 판정 → 리렌더.
+        </p>
+        <p className='mt-3'>
+          🟢 <code>useCallback</code>으로 감싸면 <b>같은 함수 참조</b>라 memo가
+          &quot;같음&quot; 판정 → 리렌더 스킵.
+        </p>
+      </StageFlow.Observe>
+
+      <StageFlow.Next subtitle='코드 + 정리 + 다음'>
+        <p className='mb-4'>
+          ✔️ <code>React.memo</code>된 자식에 함수 넘길 땐{' '}
+          <code>useCallback</code>
+          짝. 그냥 onClick엔 필요 없음.
+        </p>
+        <CodeBlock
+          filename='useCallback'
+          code={`function Parent() {
+  const handleClick = useCallback(
+    () => console.log('click'),
+    []    // deps 비면 마운트 이후 같은 참조
+  )
+  return <MemoChild onClick={handleClick} />
+}`}
+        />
+        <p className='mt-5 text-gray-700'>
+          다음은 자식을 진짜로 감싸는 <b>React.memo</b>의 속사정 🚀
+        </p>
+      </StageFlow.Next>
+    </StageFlow>
   )
 }

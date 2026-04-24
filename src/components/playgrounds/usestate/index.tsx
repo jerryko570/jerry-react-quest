@@ -1,47 +1,71 @@
 import BatchUpdate from './BatchUpdate'
-import GoalViz from './GoalViz'
 import StaleClosure from './StaleClosure'
-import PlaygroundSection from '@/components/stages/PlaygroundSection'
+import CodeBlock from '@/components/stages/CodeBlock'
+import StageFlow from '@/components/stages/StageFlow'
 
 export default function UseStatePlayground() {
   return (
-    <div className='flex flex-col gap-12'>
-      <div className='rounded-2xl bg-linear-to-br from-[#fff5f4] to-[#ffe8e3] p-5'>
-        <div className='flex items-start gap-3'>
-          <span className='text-3xl'>🎮</span>
-          <div>
-            <div className='font-extrabold'>
-              값 기반 vs 함수형 업데이트, 직접 실수해보자
-            </div>
-            <p className='mt-1 text-sm text-gray-700'>
-              두 놀이기구 다 &quot;왜 내 count가 이상하지?&quot; 를 재현하는
-              실험이야. 빨간 버튼부터 먼저 눌러서 망가뜨려봐.
-            </p>
-          </div>
-        </div>
-      </div>
+    <StageFlow>
+      <StageFlow.Empathy>
+        😵 &quot;setState 3번 연달아 했는데 왜 +3이 아니고 +1이지?&quot; — 이
+        함정, 한 번씩 다 빠져봤거든.
+      </StageFlow.Empathy>
 
-      <GoalViz />
-
-      <div className='border-t border-gray-200' />
-
-      <PlaygroundSection
-        index='A'
-        emoji='📦'
-        title='Batch 업데이트 실험'
-        description='같은 이벤트 안에서 setState를 3번 연속 호출. 값 기반이면 +1만, 함수형이면 +3. React의 batching을 눈으로 확인.'
-      >
+      <StageFlow.Play subtitle='빨간 버튼(❌ 값으로 +3) 먼저 눌러봐'>
         <BatchUpdate />
-      </PlaygroundSection>
+      </StageFlow.Play>
 
-      <PlaygroundSection
-        index='B'
-        emoji='⏳'
-        title='Stale Closure 트랩'
-        description='setTimeout 안의 state는 버튼 누른 순간에 얼어붙는다. 3초 기다리는 동안 count를 바꿔보고, 결과가 어느 시점 값인지 비교.'
+      <StageFlow.Observe
+        title='🤔 왜 값 버튼은 +1만 되지?'
+        subtitle='3번 호출했는데'
+      >
+        <p>
+          🟢 <code>setCount(count + 1)</code>은 버튼 누른 순간의{' '}
+          <b>옛날 count</b>에 +1하는 계산이야.
+        </p>
+        <p className='mt-2'>
+          🟢 3번 다 같은 옛날 값에 +1하니까 결과도 +1. 리액트가 같은 렌더 안
+          업데이트를 묶어서(batching) 한 번만 그려.
+        </p>
+      </StageFlow.Observe>
+
+      <StageFlow.Deepen
+        title='⏳ 이번엔 3초 뒤에 보는 타이머 실험'
+        subtitle='기다리는 동안 count를 바꿔봐'
       >
         <StaleClosure />
-      </PlaygroundSection>
-    </div>
+      </StageFlow.Deepen>
+
+      <StageFlow.Next subtitle='코드 + 정리 + 다음'>
+        <p className='mb-3'>
+          ✔️ <b>직전 값에 의존할 땐 함수형</b>{' '}
+          <code>setCount(c =&gt; c + 1)</code>.
+        </p>
+        <div className='grid gap-3 md:grid-cols-2'>
+          <div>
+            <div className='mb-2 inline-block rounded-full bg-red-100 px-2 py-0.5 text-[11px] font-bold text-red-800'>
+              🚫 값 기반
+            </div>
+            <CodeBlock
+              filename='❌ 옛 count에 고정'
+              code={`setCount(count + 1)  // 3번 호출해도 +1`}
+            />
+          </div>
+          <div>
+            <div className='mb-2 inline-block rounded-full bg-emerald-100 px-2 py-0.5 text-[11px] font-bold text-emerald-800'>
+              ✅ 함수형
+            </div>
+            <CodeBlock
+              filename='✅ 직전 값에 +1'
+              code={`setCount(c => c + 1)  // 3번 호출하면 +3`}
+            />
+          </div>
+        </div>
+        <p className='mt-4 text-gray-700'>
+          다음은 setState와 짝꿍인 <b>useEffect</b>. 언제·어떻게 실행되는지
+          알아보자 🚀
+        </p>
+      </StageFlow.Next>
+    </StageFlow>
   )
 }

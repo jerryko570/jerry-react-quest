@@ -1,37 +1,43 @@
-import GoalViz from './GoalViz'
 import SuspenseLab from './SuspenseLab'
-import PlaygroundSection from '@/components/stages/PlaygroundSection'
+import CodeBlock from '@/components/stages/CodeBlock'
+import StageFlow from '@/components/stages/StageFlow'
 
 export default function SuspenseUsePlayground() {
   return (
-    <div className='flex flex-col gap-12'>
-      <div className='rounded-2xl bg-linear-to-br from-[#fff5f4] to-[#ffe8e3] p-5'>
-        <div className='flex items-start gap-3'>
-          <span className='text-3xl'>🎮</span>
-          <div>
-            <div className='font-extrabold'>
-              로딩을 &quot;컴포넌트가 아니라 경계&quot;에서
-            </div>
-            <p className='mt-1 text-sm text-gray-700'>
-              두 Promise가 각자 속도로 풀려. 중첩 Suspense 토글을 눌러가며
-              스켈레톤이 조각조각 교체되는지, 한꺼번에 나타나는지를 비교해봐.
-            </p>
-          </div>
-        </div>
-      </div>
+    <StageFlow>
+      <StageFlow.Empathy>
+        🪜 &quot;로딩 state 관리 너무 귀찮아&quot; — Suspense로 경계에서 처리.
+      </StageFlow.Empathy>
 
-      <GoalViz />
-
-      <div className='border-t border-gray-200' />
-
-      <PlaygroundSection
-        index='A'
-        emoji='🪜'
-        title='Suspense 중첩 vs 하나의 boundary'
-        description='React 19 use hook + 두 속도의 Promise. 같은 데이터를 중첩 Suspense로 조각내 보여줄 때와 한 boundary로 묶을 때 UX 차이를 몸으로.'
-      >
+      <StageFlow.Play subtitle='중첩 Suspense 토글 켰다 껐다 해봐'>
         <SuspenseLab />
-      </PlaygroundSection>
-    </div>
+      </StageFlow.Play>
+
+      <StageFlow.Observe title='🤔 스켈레톤이 조각조각 vs 한꺼번에'>
+        <p>🟢 중첩 Suspense = 빠른 건 먼저 보여주고 느린 것만 대기.</p>
+        <p className='mt-3'>🟢 한 boundary = 둘 다 완료될 때까지 기다림.</p>
+      </StageFlow.Observe>
+
+      <StageFlow.Next subtitle='코드 + 정리 + 다음'>
+        <p className='mb-4'>
+          ✔️ boundary 위치가 UX. React 19 <code>use</code> hook은 Promise를
+          Suspense로 throw.
+        </p>
+        <CodeBlock
+          filename='Suspense + use'
+          code={`<Suspense fallback={<Skeleton />}>
+  <Posts promise={fetchPostsPromise} />
+</Suspense>
+
+function Posts({ promise }: Props) {
+  const posts = use(promise)   // pending → Suspense
+  return <List items={posts} />
+}`}
+        />
+        <p className='mt-5 text-gray-700'>
+          다음은 폼의 새 표준 <b>React 19 Actions</b> 🚀
+        </p>
+      </StageFlow.Next>
+    </StageFlow>
   )
 }

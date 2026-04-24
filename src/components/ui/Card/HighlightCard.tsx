@@ -30,7 +30,7 @@ export default function HighlightCard({
     >
       {icon && <div className='mb-2 text-4xl'>{icon}</div>}
       {tag && (
-        <Text as='caption' className='font-bold text-orange-500'>
+        <Text as='caption' className='font-bold text-blue-500'>
           {tag}
         </Text>
       )}

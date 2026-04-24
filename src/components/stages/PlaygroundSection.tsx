@@ -18,7 +18,7 @@ export default function PlaygroundSection({
   return (
     <section>
       <header className='mb-3 flex items-center gap-3'>
-        <span className='flex h-9 w-9 items-center justify-center rounded-full bg-[#ff5e48] font-mono text-sm font-bold text-white shadow-sm'>
+        <span className='flex h-9 w-9 items-center justify-center rounded-full bg-[#4576fc] font-mono text-sm font-bold text-white shadow-sm'>
           {index}
         </span>
         <div>

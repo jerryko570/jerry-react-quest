@@ -82,7 +82,7 @@ export default function RaceCondition() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder='react, useMemo, suspense...'
-          className='w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 font-mono text-sm focus:border-[#ff5e48] focus:outline-none'
+          className='w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 font-mono text-sm focus:border-[#4576fc] focus:outline-none'
         />
         <div className='mt-3 grid grid-cols-2 gap-3 text-sm'>
           <div>

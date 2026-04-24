@@ -1,37 +1,44 @@
 import BossMission from './BossMission'
-import GoalViz from './GoalViz'
-import PlaygroundSection from '@/components/stages/PlaygroundSection'
+import CodeBlock from '@/components/stages/CodeBlock'
+import StageFlow from '@/components/stages/StageFlow'
 
 export default function BossRenderingPlayground() {
   return (
-    <div className='flex flex-col gap-12'>
-      <div className='rounded-2xl bg-linear-to-br from-[#ede9fe] to-[#fce7f3] p-5 ring-1 ring-purple-200'>
-        <div className='flex items-start gap-3'>
-          <span className='text-3xl'>👑</span>
-          <div>
-            <div className='font-extrabold text-purple-900'>
-              최종 보스전 — 실전 리스트 최적화
-            </div>
-            <p className='mt-1 text-sm text-purple-900/80'>
-              500개 아이템을 가진 리스트를 기본 모드에서 리렌더시켜 느려지는
-              순간을 체감하고, 최적화 모드로 바꿔 어떻게 달라지는지 ms로 확인.
-            </p>
-          </div>
-        </div>
-      </div>
+    <StageFlow>
+      <StageFlow.Empathy>
+        👑 &quot;500개 리스트 스크롤이 덜컥거려&quot; — 이제 3종 세트를 실전에
+        적용.
+      </StageFlow.Empathy>
 
-      <GoalViz />
-
-      <div className='border-t border-gray-200' />
-
-      <PlaygroundSection
-        index='A'
-        emoji='📋'
-        title='500개 아이템 리스트 — 기본 vs 최적화'
-        description='useMemo + React.memo 조합으로 수백 개 행의 리렌더를 스킵하는 실전 패턴. 마지막 렌더 ms로 차이 체감.'
-      >
+      <StageFlow.Play subtitle='기본 모드에서 부모 리렌더 연타'>
         <BossMission />
-      </PlaygroundSection>
-    </div>
+      </StageFlow.Play>
+
+      <StageFlow.Observe title='🤔 최적화 모드로 바꾸면 ms가 훅 떨어져'>
+        <p>
+          🟢 <code>useMemo</code>로 데이터 참조 고정 → 자식 &quot;같다&quot;
+          판정.
+        </p>
+        <p className='mt-3'>
+          🟢 <code>React.memo</code>로 각 행 감싸 500개가 리렌더 스킵.
+        </p>
+      </StageFlow.Observe>
+
+      <StageFlow.Next subtitle='코드 + 정리 + 다음'>
+        <p className='mb-4'>
+          ✔️ 순서: <b>안정 key → 데이터 useMemo → Row memo → 가상화</b>.
+        </p>
+        <CodeBlock
+          filename='500개 리스트 패턴'
+          code={`const MemoRow = memo(Row)
+
+function List() {
+  const data = useMemo(() => buildData(), [])
+  return data.map(item => <MemoRow key={item.id} item={item} />)
+}`}
+        />
+        <p className='mt-5 text-gray-700'>다음은 번들·이미지·Web Vitals 🚀</p>
+      </StageFlow.Next>
+    </StageFlow>
   )
 }

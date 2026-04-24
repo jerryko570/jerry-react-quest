@@ -7,7 +7,7 @@ export const stageCardVariants = cva(
       status: {
         locked: 'border-gray-200 bg-gray-50/80 opacity-55',
         active:
-          'border-[#ff5e48] bg-white shadow-[0_0_0_4px_#ffe8e3] hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-8px_rgba(0,0,0,0.1)]',
+          'border-[#4576fc] bg-white shadow-[0_0_0_4px_#e7edff] hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-8px_rgba(0,0,0,0.1)]',
         completed:
           'border-[#10b981] bg-[#d1fae5] hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-8px_rgba(0,0,0,0.1)]',
       },

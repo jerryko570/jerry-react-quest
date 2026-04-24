@@ -13,7 +13,7 @@ export default function Header() {
         >
           <span className='text-xl'>🎮</span>
           <span className={cn('font-bold tracking-[-0.01em]')}>
-            React <span className='text-[#ff5e48]'>Quest</span>
+            React <span className='text-[#4576fc]'>Quest</span>
           </span>
         </Link>
 
@@ -21,7 +21,7 @@ export default function Header() {
           href='https://github.com/jerryko570/jerry-react-quest'
           target='_blank'
           rel='noopener noreferrer'
-          className='text-sm font-medium text-gray-600 transition hover:text-[#ff5e48]'
+          className='text-sm font-medium text-gray-600 transition hover:text-[#4576fc]'
         >
           💻 GitHub
         </a>

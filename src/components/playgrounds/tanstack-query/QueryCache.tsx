@@ -118,7 +118,7 @@ export default function QueryCache() {
                 className={cn(
                   'rounded-full px-3 py-1 text-xs font-bold transition',
                   activeId === id
-                    ? 'bg-[#ff5e48] text-white'
+                    ? 'bg-[#4576fc] text-white'
                     : cached
                       ? 'bg-emerald-100 text-emerald-800'
                       : 'text-gray-500 hover:bg-gray-100'
@@ -134,7 +134,7 @@ export default function QueryCache() {
         <button
           type='button'
           onClick={() => load(activeId, true)}
-          className='rounded-full border border-gray-200 bg-white px-3 py-1.5 text-xs font-bold text-gray-700 hover:border-[#ff5e48]'
+          className='rounded-full border border-gray-200 bg-white px-3 py-1.5 text-xs font-bold text-gray-700 hover:border-[#4576fc]'
         >
           🔄 강제 새로고침
         </button>

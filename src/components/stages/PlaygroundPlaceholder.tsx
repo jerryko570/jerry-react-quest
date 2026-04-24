@@ -15,7 +15,7 @@ export default function PlaygroundPlaceholder({ stageTitle }: Props) {
       </p>
       <Link
         href='/'
-        className='mt-5 inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-semibold text-gray-700 hover:border-[#ff5e48] hover:text-[#ff5e48]'
+        className='mt-5 inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-semibold text-gray-700 hover:border-[#4576fc] hover:text-[#4576fc]'
       >
         ← 로드맵으로 돌아가기
       </Link>

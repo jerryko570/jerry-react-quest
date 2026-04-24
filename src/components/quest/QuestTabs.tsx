@@ -63,7 +63,7 @@ export default function QuestTabs({ initialTab }: QuestTabsProps) {
           {activeMeta.emoji} {activeMeta.label}
         </Text>
         {activeMeta.badge && (
-          <Text as='body' className='font-bold text-[#ff5e48]'>
+          <Text as='body' className='font-bold text-[#4576fc]'>
             {activeMeta.badge}
           </Text>
         )}
@@ -99,10 +99,10 @@ function TabButton({
       className={cn(
         'inline-flex shrink-0 items-center gap-2 rounded-full border-2 px-5 py-2.5 text-sm font-bold transition-all duration-200',
         isActive
-          ? 'border-[#ff5e48] bg-[#ff5e48] text-white shadow-[0_4px_12px_-4px_rgba(255,94,72,0.5)]'
+          ? 'border-[#4576fc] bg-[#4576fc] text-white shadow-[0_4px_12px_-4px_rgba(69,118,252,0.5)]'
           : cleared
             ? 'border-emerald-400 bg-emerald-50 text-emerald-800 hover:bg-emerald-100'
-            : 'border-gray-200 bg-white text-gray-700 hover:border-[#ff5e48] hover:text-[#ff5e48]'
+            : 'border-gray-200 bg-white text-gray-700 hover:border-[#4576fc] hover:text-[#4576fc]'
       )}
     >
       <span>{meta.emoji}</span>
@@ -110,7 +110,7 @@ function TabButton({
       {cleared && !isActive && <span className='text-xs'>👑</span>}
       {meta.badge && !cleared && (
         <span
-          className={cn('text-xs', isActive ? 'text-white' : 'text-[#ff5e48]')}
+          className={cn('text-xs', isActive ? 'text-white' : 'text-[#4576fc]')}
         >
           {meta.badge}
         </span>

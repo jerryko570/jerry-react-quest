@@ -21,7 +21,7 @@ export default function Dashboard({
   const badgesTotal = achievements.length
 
   return (
-    <section className='mb-12 rounded-3xl bg-linear-to-br from-[#ff5e48] to-[#ff8a65] p-8 text-white shadow-[0_20px_40px_-20px_rgba(255,94,72,0.4)]'>
+    <section className='mb-12 rounded-3xl bg-linear-to-br from-[#4576fc] to-[#5f8aff] p-8 text-white shadow-[0_20px_40px_-20px_rgba(69,118,252,0.4)]'>
       <div className='mb-5 flex flex-wrap items-end justify-between gap-3'>
         <div>
           <div className='text-xs font-semibold tracking-widest uppercase opacity-90'>

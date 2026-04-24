@@ -64,7 +64,7 @@ export default function CalmDeepen() {
         <button
           type='button'
           onClick={onClick}
-          className='rounded-full bg-[#ff5e48] px-4 py-2 text-sm font-bold text-white hover:bg-[#ec4b36]'
+          className='rounded-full bg-[#4576fc] px-4 py-2 text-sm font-bold text-white hover:bg-[#2355de]'
         >
           🎲 카운터 ({count})
         </button>
@@ -102,7 +102,7 @@ export default function CalmDeepen() {
           'grid grid-cols-5 gap-2 rounded-xl p-3 transition-colors sm:grid-cols-8',
           useMemoed
             ? 'bg-linear-to-br from-sky-50 to-blue-50'
-            : 'bg-linear-to-br from-red-50 to-orange-50'
+            : 'bg-linear-to-br from-red-50 to-blue-200'
         )}
       >
         {seeds.map((s) => (

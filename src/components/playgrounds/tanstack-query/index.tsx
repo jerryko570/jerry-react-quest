@@ -1,38 +1,41 @@
-import GoalViz from './GoalViz'
 import QueryCache from './QueryCache'
-import PlaygroundSection from '@/components/stages/PlaygroundSection'
+import CodeBlock from '@/components/stages/CodeBlock'
+import StageFlow from '@/components/stages/StageFlow'
 
 export default function TanStackQueryPlayground() {
   return (
-    <div className='flex flex-col gap-12'>
-      <div className='rounded-2xl bg-linear-to-br from-[#fff5f4] to-[#ffe8e3] p-5'>
-        <div className='flex items-start gap-3'>
-          <span className='text-3xl'>🎮</span>
-          <div>
-            <div className='font-extrabold'>
-              이 놀이기구는 TanStack Query를 &quot;흉내&quot; 낸 mock 이야
-            </div>
-            <p className='mt-1 text-sm text-gray-700'>
-              실제 라이브러리 없이도 캐시 · stale · 자동 refetch 개념을 눈으로
-              확인할 수 있게 가짜 fetch와 메모리 캐시로 시뮬레이션했어. 탭을
-              왔다갔다 하며 네트워크 호출이 언제 진짜 일어나는지 봐봐.
-            </p>
-          </div>
-        </div>
-      </div>
+    <StageFlow>
+      <StageFlow.Empathy>
+        🛰️ &quot;useEffect로 fetch 하면 매번 호출, race condition 취약&quot; —
+        서버 상태 전용 도구가 필요해.
+      </StageFlow.Empathy>
 
-      <GoalViz />
-
-      <div className='border-t border-gray-200' />
-
-      <PlaygroundSection
-        index='A'
-        emoji='🗄️'
-        title='Query Cache 시뮬레이터'
-        description='가짜 fetch + 5초 staleTime + stale-while-revalidate 재현. User 탭을 왕복하며 캐시 히트/미스/백그라운드 refetch 관찰.'
-      >
+      <StageFlow.Play subtitle='User 1~5 탭을 왔다갔다 해봐'>
         <QueryCache />
-      </PlaygroundSection>
-    </div>
+      </StageFlow.Play>
+
+      <StageFlow.Observe title='🤔 왜 네트워크 호출이 안 늘어나지?'>
+        <p>🟢 queryKey 단위로 캐시. 같은 key면 네트워크 없이 즉시 반환.</p>
+        <p className='mt-3'>
+          🟢 staleTime 지나면 stale-while-revalidate: 캐시 먼저 보여주고 뒤에서
+          refetch.
+        </p>
+      </StageFlow.Observe>
+
+      <StageFlow.Next subtitle='코드 + 정리 + 다음'>
+        <p className='mb-4'>
+          ✔️ 서버 상태는 useEffect 대신 <b>TanStack Query</b>로.
+        </p>
+        <CodeBlock
+          filename='useQuery 기본형'
+          code={`const { data, isPending } = useQuery({
+  queryKey: ['user', id],
+  queryFn: () => fetchUser(id),
+  staleTime: 5_000,
+})`}
+        />
+        <p className='mt-5 text-gray-700'>다음은 Zustand/Jotai/RTK 비교 🚀</p>
+      </StageFlow.Next>
+    </StageFlow>
   )
 }

@@ -1,35 +1,47 @@
 import AccessibilityLab from './AccessibilityLab'
-import GoalViz from './GoalViz'
-import PlaygroundSection from '@/components/stages/PlaygroundSection'
+import CodeBlock from '@/components/stages/CodeBlock'
+import StageFlow from '@/components/stages/StageFlow'
 
 export default function A11yPlayground() {
   return (
-    <div className='flex flex-col gap-12'>
-      <div className='rounded-2xl bg-linear-to-br from-[#fff5f4] to-[#ffe8e3] p-5'>
-        <div className='flex items-start gap-3'>
-          <span className='text-3xl'>🎮</span>
-          <div>
-            <div className='font-extrabold'>키보드로만 움직여봐</div>
-            <p className='mt-1 text-sm text-gray-700'>
-              마우스 옆으로 치우고 Tab·Enter·ESC로만 버튼·모달·폼을 조작. 어디가
-              잘 작동하고 어디가 막히는지가 곧 접근성 체크리스트야.
-            </p>
-          </div>
-        </div>
-      </div>
+    <StageFlow>
+      <StageFlow.Empathy>
+        ♿ &quot;키보드만 써봤는데 안 되는 거 투성이&quot; — 접근성은 나중으로
+        미루면 더 큰 빚.
+      </StageFlow.Empathy>
 
-      <GoalViz />
-
-      <div className='border-t border-gray-200' />
-
-      <PlaygroundSection
-        index='A'
-        emoji='♿'
-        title='키보드 · ARIA · focus trap 4가지 데모'
-        description='ARIA live region · focus trap 모달 · useId label-input · focus-visible 스타일.'
-      >
+      <StageFlow.Play subtitle='마우스 없이 Tab·Enter·ESC로만'>
         <AccessibilityLab />
-      </PlaygroundSection>
-    </div>
+      </StageFlow.Play>
+
+      <StageFlow.Observe title='🤔 어디가 잘 되고 어디가 막히나?'>
+        <p>🟢 ARIA live region = 동적 변화를 스크린 리더가 읽어줌.</p>
+        <p className='mt-3'>
+          🟢 focus trap · useId · focus-visible = 키보드 사용자 전용 세심함.
+        </p>
+      </StageFlow.Observe>
+
+      <StageFlow.Next subtitle='코드 + 정리 + 다음'>
+        <p className='mb-4'>
+          ✔️ 기본 HTML부터 제대로. ARIA는 <b>네이티브로 표현 불가능한 것</b>
+          에만.
+        </p>
+        <CodeBlock
+          filename='접근성 기본기'
+          code={`<button onClick={submit}>저장</button>   {/* div 대신 button */}
+
+<label htmlFor={id}>이메일</label>
+<input id={id} aria-describedby={helpId} />
+<p id={helpId}>비밀번호 재설정 용도</p>
+
+<div aria-live='polite' aria-busy={loading}>
+  {loading ? '처리 중...' : result}
+</div>`}
+        />
+        <p className='mt-5 text-gray-700'>
+          다음은 <b>테스트</b>로 리팩토링 안전망 🚀
+        </p>
+      </StageFlow.Next>
+    </StageFlow>
   )
 }

@@ -15,14 +15,14 @@ function AnimatePresenceDemo() {
       <button
         type='button'
         onClick={() => setShow((s) => !s)}
-        className='mb-3 rounded-full bg-[#ff5e48] px-4 py-2 text-sm font-bold text-white hover:bg-[#ec4b36]'
+        className='mb-3 rounded-full bg-[#4576fc] px-4 py-2 text-sm font-bold text-white hover:bg-[#2355de]'
       >
         {show ? '🙈 숨기기' : '👀 보이기'}
       </button>
       <div className='h-24 rounded-lg bg-gray-50 p-2'>
         <div
           className={cn(
-            'flex h-full items-center justify-center rounded-lg bg-linear-to-br from-[#ff5e48] to-[#ff8a65] font-bold text-white transition-all duration-500',
+            'flex h-full items-center justify-center rounded-lg bg-linear-to-br from-[#4576fc] to-[#5f8aff] font-bold text-white transition-all duration-500',
             show
               ? 'translate-y-0 scale-100 opacity-100'
               : '-translate-y-4 scale-95 opacity-0'
@@ -73,7 +73,7 @@ function DragDemo() {
         <div
           onMouseDown={onMouseDown}
           className={cn(
-            'absolute flex h-16 w-16 cursor-grab items-center justify-center rounded-xl bg-[#ff5e48] font-bold text-white shadow-lg active:cursor-grabbing',
+            'absolute flex h-16 w-16 cursor-grab items-center justify-center rounded-xl bg-[#4576fc] font-bold text-white shadow-lg active:cursor-grabbing',
             !dragging &&
               'transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]'
           )}
@@ -85,7 +85,7 @@ function DragDemo() {
       <button
         type='button'
         onClick={spring}
-        className='rounded-full border border-gray-300 bg-white px-3 py-1 text-xs font-bold text-gray-700 hover:border-[#ff5e48]'
+        className='rounded-full border border-gray-300 bg-white px-3 py-1 text-xs font-bold text-gray-700 hover:border-[#4576fc]'
       >
         ↩️ spring으로 원위치
       </button>
@@ -113,7 +113,7 @@ function VariantsDemo() {
           onMouseDown={() => setState('tap')}
           onMouseUp={() => setState('hover')}
           className={cn(
-            'rounded-xl bg-[#ff5e48] px-6 py-3 font-bold text-white transition-all duration-200 ease-out',
+            'rounded-xl bg-[#4576fc] px-6 py-3 font-bold text-white transition-all duration-200 ease-out',
             state === 'hover' && 'scale-110 shadow-lg',
             state === 'tap' && 'scale-95'
           )}
@@ -162,7 +162,7 @@ function ScrollDemo() {
       </div>
       <div className='mt-3 h-2 overflow-hidden rounded-full bg-gray-200'>
         <div
-          className='h-full rounded-full bg-[#ff5e48] transition-[width] duration-100'
+          className='h-full rounded-full bg-[#4576fc] transition-[width] duration-100'
           style={{ width: `${scrolled * 100}%` }}
         />
       </div>

@@ -27,7 +27,7 @@ export default function FeatureCard({
         className
       )}
     >
-      <Text as='h3' className='font-extrabold text-orange-500'>
+      <Text as='h3' className='font-extrabold text-blue-500'>
         {value}
       </Text>
       <Text as='body' className='mt-4 font-medium'>

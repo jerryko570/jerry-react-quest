@@ -1,38 +1,52 @@
-import GoalViz from './GoalViz'
 import MotionLab from './MotionLab'
-import PlaygroundSection from '@/components/stages/PlaygroundSection'
+import CodeBlock from '@/components/stages/CodeBlock'
+import StageFlow from '@/components/stages/StageFlow'
 
 export default function FramerMotionPlayground() {
   return (
-    <div className='flex flex-col gap-12'>
-      <div className='rounded-2xl bg-linear-to-br from-[#fff5f4] to-[#ffe8e3] p-5'>
-        <div className='flex items-start gap-3'>
-          <span className='text-3xl'>🎮</span>
-          <div>
-            <div className='font-extrabold'>
-              CSS로 맛보고 Motion 코드로 제대로
-            </div>
-            <p className='mt-1 text-sm text-gray-700'>
-              번들 추가 없이 CSS만으로 4가지
-              패턴(마운트/드래그/variants/스크롤)을 흉내 냈어. 각 데모 아래 실전
-              Framer Motion 코드가 있으니 비교해봐.
-            </p>
-          </div>
-        </div>
-      </div>
+    <StageFlow>
+      <StageFlow.Empathy>
+        🎭 &quot;드래그 한 줄로 하고 싶은데 mousedown·move·up 다 짜야 해?&quot;
+        — Motion은 한 줄.
+      </StageFlow.Empathy>
 
-      <GoalViz />
-
-      <div className='border-t border-gray-200' />
-
-      <PlaygroundSection
-        index='A'
-        emoji='🎭'
-        title='4가지 모션 패턴 체험'
-        description='AnimatePresence · Drag · Variants · Scroll — CSS 기반 mock + 실전 motion 코드.'
-      >
+      <StageFlow.Play subtitle='4가지 패턴: Fade · Drag · Variants · Scroll'>
         <MotionLab />
-      </PlaygroundSection>
-    </div>
+      </StageFlow.Play>
+
+      <StageFlow.Observe title='🤔 CSS로도 되는데 왜 Motion?'>
+        <p>🟢 간단한 전환은 Tailwind로 충분. 번들 무게 없음.</p>
+        <p className='mt-3'>
+          🟢 spring · layout animation · drag/gesture · mount/unmount 연출이
+          필요하면 Motion.
+        </p>
+      </StageFlow.Observe>
+
+      <StageFlow.Next subtitle='코드 + 정리 + 다음'>
+        <p className='mb-4'>
+          ✔️ Framer Motion v12부터 패키지 이름 <b>motion/react</b>로 리브랜드.
+        </p>
+        <CodeBlock
+          filename='선언형 gesture'
+          code={`import { motion, AnimatePresence } from 'motion/react'
+
+<motion.div
+  drag
+  dragConstraints={{ left: 0, right: 200 }}
+  dragSnapToOrigin
+  whileHover={{ scale: 1.1 }}
+  whileTap={{ scale: 0.95 }}
+  transition={{ type: 'spring', stiffness: 300 }}
+/>
+
+<AnimatePresence>
+  {show && <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} />}
+</AnimatePresence>`}
+        />
+        <p className='mt-5 text-gray-700'>
+          다음은 프로덕션 <b>에러 아키텍처</b> 🚀
+        </p>
+      </StageFlow.Next>
+    </StageFlow>
   )
 }

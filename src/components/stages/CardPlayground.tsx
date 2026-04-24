@@ -38,8 +38,8 @@ export default function CardPlayground({ items }: Props) {
             className={cn(
               'rounded-full border-2 px-3 py-1.5 text-xs font-bold transition',
               activeId === c.id
-                ? 'border-[#ff5e48] bg-[#ff5e48] text-white'
-                : 'border-gray-200 bg-white text-gray-700 hover:border-[#ff5e48]'
+                ? 'border-[#4576fc] bg-[#4576fc] text-white'
+                : 'border-gray-200 bg-white text-gray-700 hover:border-[#4576fc]'
             )}
           >
             {c.emoji} {c.title}

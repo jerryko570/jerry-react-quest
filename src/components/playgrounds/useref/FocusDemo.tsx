@@ -34,20 +34,20 @@ export default function FocusDemo() {
         <input
           ref={inputRef}
           defaultValue='hello useRef'
-          className='w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 font-mono text-sm focus:border-[#ff5e48] focus:outline-none'
+          className='w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 font-mono text-sm focus:border-[#4576fc] focus:outline-none'
         />
         <div className='mt-3 flex flex-wrap gap-2'>
           <button
             type='button'
             onClick={focusInput}
-            className='rounded-full bg-[#ff5e48] px-4 py-1.5 text-sm font-bold text-white hover:bg-[#ec4b36]'
+            className='rounded-full bg-[#4576fc] px-4 py-1.5 text-sm font-bold text-white hover:bg-[#2355de]'
           >
             🎯 포커스
           </button>
           <button
             type='button'
             onClick={selectInput}
-            className='rounded-full border border-gray-300 bg-white px-4 py-1.5 text-sm font-bold text-gray-700 hover:border-[#ff5e48]'
+            className='rounded-full border border-gray-300 bg-white px-4 py-1.5 text-sm font-bold text-gray-700 hover:border-[#4576fc]'
           >
             ✂️ 포커스 + 전체 선택
           </button>
@@ -75,14 +75,14 @@ export default function FocusDemo() {
           <button
             type='button'
             onClick={scrollToTop}
-            className='rounded-full border border-gray-300 bg-white px-3 py-1 text-xs font-bold text-gray-700 hover:border-[#ff5e48]'
+            className='rounded-full border border-gray-300 bg-white px-3 py-1 text-xs font-bold text-gray-700 hover:border-[#4576fc]'
           >
             ⬆️ top
           </button>
           <button
             type='button'
             onClick={scrollToBottom}
-            className='rounded-full border border-gray-300 bg-white px-3 py-1 text-xs font-bold text-gray-700 hover:border-[#ff5e48]'
+            className='rounded-full border border-gray-300 bg-white px-3 py-1 text-xs font-bold text-gray-700 hover:border-[#4576fc]'
           >
             ⬇️ bottom
           </button>

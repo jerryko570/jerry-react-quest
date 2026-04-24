@@ -67,7 +67,7 @@ export default function SuspenseLab() {
         <button
           type='button'
           onClick={() => setRunKey((k) => k + 1)}
-          className='rounded-full bg-[#ff5e48] px-4 py-2 text-sm font-bold text-white hover:bg-[#ec4b36]'
+          className='rounded-full bg-[#4576fc] px-4 py-2 text-sm font-bold text-white hover:bg-[#2355de]'
         >
           🚀 다시 불러오기 (run #{runKey})
         </button>
