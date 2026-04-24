@@ -1,45 +1,30 @@
 'use client'
 
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/cn'
-import { HeaderVariant } from './Header.variants'
 
-type HeaderProps = VariantProps<typeof HeaderVariant>
-
-const navLinks = [
-  { href: '/hooks', label: 'Hooks' },
-  { href: '/about', label: 'About' },
-]
-
-export default function Header({ variant, sticky }: HeaderProps) {
-  const pathname = usePathname()
-
+export default function Header() {
   return (
-    <header className={cn(HeaderVariant({ variant, sticky }))}>
-      <div className='mx-auto flex h-full max-w-6xl items-center justify-between px-6'>
-        <Link href='/' className='flex items-center gap-2'>
+    <header className='sticky top-0 z-50 h-16 border-b border-gray-100 bg-white/80 backdrop-blur-md'>
+      <div className='mx-auto flex h-full max-w-6xl items-center justify-between px-6 sm:px-8'>
+        <Link
+          href='/'
+          className='flex items-center gap-2 transition-opacity hover:opacity-80'
+        >
           <span className='text-xl'>🎮</span>
-          <span className='font-bold tracking-tight'>React Playground</span>
+          <span className={cn('font-bold tracking-[-0.01em]')}>
+            React <span className='text-[#ff5e48]'>Quest</span>
+          </span>
         </Link>
 
-        <nav className='flex items-center gap-6'>
-          {navLinks.map(({ href, label }) => (
-            <Link
-              key={href}
-              href={href}
-              className={cn(
-                'text-sm font-medium transition-colors',
-                pathname === href
-                  ? 'text-orange-500'
-                  : 'text-gray-700 hover:text-gray-900'
-              )}
-            >
-              {label}
-            </Link>
-          ))}
-        </nav>
+        <a
+          href='https://github.com/jerryko570/jerry-react-quest'
+          target='_blank'
+          rel='noopener noreferrer'
+          className='text-sm font-medium text-gray-600 transition hover:text-[#ff5e48]'
+        >
+          💻 GitHub
+        </a>
       </div>
     </header>
   )

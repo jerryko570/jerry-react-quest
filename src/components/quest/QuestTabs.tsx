@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
+import Text from '@/components/ui/Text'
 import {
   allStages,
   categoryMeta,
@@ -31,10 +32,10 @@ export default function QuestTabs({ initialTab }: QuestTabsProps) {
   }
 
   return (
-    <section className='mb-12'>
+    <div>
       <nav
         aria-label='Quest 카테고리'
-        className='-mx-2 mb-6 flex flex-wrap gap-2 overflow-x-auto px-2'
+        className='-mx-2 mb-8 flex flex-wrap gap-2 overflow-x-auto px-2'
       >
         {categoryMeta.map((meta) => {
           const inCategory = allStages.filter((s) => s.category === meta.id)
@@ -57,18 +58,22 @@ export default function QuestTabs({ initialTab }: QuestTabsProps) {
         })}
       </nav>
 
-      <header className='mb-6 border-b-2 border-gray-100 pb-4'>
-        <h2 className='mb-1 text-2xl font-extrabold'>
-          {activeMeta.emoji} {activeMeta.label}{' '}
-          {activeMeta.badge && (
-            <span className='text-[#ff5e48]'>{activeMeta.badge}</span>
-          )}
-        </h2>
-        <p className='text-sm text-gray-500'>{activeMeta.sublabel}</p>
+      <header className='mb-6 flex items-baseline gap-3'>
+        <Text as='h4' className='font-extrabold'>
+          {activeMeta.emoji} {activeMeta.label}
+        </Text>
+        {activeMeta.badge && (
+          <Text as='body' className='font-bold text-[#ff5e48]'>
+            {activeMeta.badge}
+          </Text>
+        )}
       </header>
+      <Text as='p' className='mb-8 text-gray-500'>
+        {activeMeta.sublabel}
+      </Text>
 
       <StageList stages={visible} />
-    </section>
+    </div>
   )
 }
 
@@ -92,7 +97,7 @@ function TabButton({
       onClick={() => onSelect(meta.id)}
       aria-current={isActive ? 'page' : undefined}
       className={cn(
-        'inline-flex shrink-0 items-center gap-2 rounded-full border-2 px-4 py-2 text-sm font-bold transition-all duration-200',
+        'inline-flex shrink-0 items-center gap-2 rounded-full border-2 px-5 py-2.5 text-sm font-bold transition-all duration-200',
         isActive
           ? 'border-[#ff5e48] bg-[#ff5e48] text-white shadow-[0_4px_12px_-4px_rgba(255,94,72,0.5)]'
           : cleared
@@ -112,7 +117,7 @@ function TabButton({
       )}
       <span
         className={cn(
-          'rounded-full px-1.5 font-mono text-[11px]',
+          'rounded-full px-2 font-mono text-[11px]',
           isActive
             ? 'bg-white/20 text-white'
             : cleared
@@ -129,13 +134,13 @@ function TabButton({
 function StageList({ stages }: { stages: Stage[] }) {
   if (stages.length === 0) {
     return (
-      <div className='rounded-2xl bg-gray-50 py-12 text-center text-sm text-gray-500'>
+      <div className='rounded-2xl bg-gray-50 py-16 text-center text-sm text-gray-500'>
         이 탭은 아직 준비 중이에요
       </div>
     )
   }
   return (
-    <div className='flex flex-col gap-4'>
+    <div className='grid gap-4 sm:grid-cols-2'>
       {stages.map((stage) => (
         <StageCard key={stage.id} stage={stage} />
       ))}

@@ -1,5 +1,6 @@
 'use client'
 
+import Text from '@/components/ui/Text'
 import { cn } from '@/lib/cn'
 import { achievements } from '@/data/achievements'
 import { useProgress } from '@/lib/progress'
@@ -14,10 +15,10 @@ export default function AchievementGrid() {
           <div
             key={a.id}
             className={cn(
-              'relative rounded-2xl border-2 p-5 text-center transition-all duration-300',
+              'relative rounded-2xl p-6 text-center ring-1 transition-all duration-300',
               unlocked
-                ? 'border-[#f59e0b] bg-[#fef3c7]'
-                : 'border-gray-100 bg-white opacity-40 grayscale'
+                ? 'bg-[#fff8ec] ring-amber-300'
+                : 'bg-white opacity-40 ring-gray-100 grayscale'
             )}
           >
             {unlocked && (
@@ -25,9 +26,13 @@ export default function AchievementGrid() {
                 NEW
               </span>
             )}
-            <div className='mb-2 text-4xl'>{a.emoji}</div>
-            <div className='mb-1 text-[13px] font-bold'>{a.title}</div>
-            <div className='text-[11px] text-gray-500'>{a.description}</div>
+            <div className='mb-3 text-5xl'>{a.emoji}</div>
+            <Text as='caption' className='block font-bold'>
+              {a.title}
+            </Text>
+            <Text as='caption' className='mt-1 block text-gray-500'>
+              {a.description}
+            </Text>
           </div>
         )
       })}
