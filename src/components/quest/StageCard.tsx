@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import Text from '@/components/ui/Text'
 import type { Stage } from '@/data/stages'
 import { hasPlayground } from '@/data/playgrounds'
 import { isCompleted, useProgress } from '@/lib/progress'
@@ -36,7 +35,7 @@ export default function StageCard({ stage }: StageCardProps) {
       aria-label={`${stage.title} 상세로 이동`}
       className={cn(
         stageCardVariants({ status: effectiveStatus, boss: stage.isBoss }),
-        'block p-6 focus-visible:ring-2 focus-visible:ring-[#4576fc] focus-visible:outline-none',
+        'block focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none',
         effectiveStatus === 'locked' && 'hover:translate-y-0 hover:shadow-none'
       )}
     >
@@ -46,7 +45,7 @@ export default function StageCard({ stage }: StageCardProps) {
       {done && (
         <div
           aria-hidden
-          className='pointer-events-none absolute top-4 right-5 -rotate-12 rounded-md border-2 border-emerald-500 px-3 py-1 font-mono text-sm font-black tracking-wider text-emerald-500 opacity-90'
+          className='pointer-events-none absolute top-4 right-5 -rotate-12 rounded-md border-2 border-blue-500 px-3 py-1 font-mono text-sm font-black tracking-wider text-blue-500 opacity-90'
         >
           CLEAR!
         </div>
@@ -56,12 +55,12 @@ export default function StageCard({ stage }: StageCardProps) {
         <div className='flex flex-1 items-start gap-4'>
           <span className='shrink-0 text-5xl'>{stage.emoji}</span>
           <div className='flex-1'>
-            <Text as='h6' className='font-extrabold'>
+            <h4 className='text-lg leading-tight font-extrabold text-gray-900'>
               {stage.title}
-            </Text>
-            <Text as='p' className='mt-1 text-gray-500'>
+            </h4>
+            <p className='mt-1 text-sm font-medium text-gray-500'>
               {stage.subtitle}
-            </Text>
+            </p>
             <div className='mt-3 flex flex-wrap items-center gap-2'>
               <span
                 className={difficultyBadge({ difficulty: stage.difficulty })}
@@ -69,15 +68,15 @@ export default function StageCard({ stage }: StageCardProps) {
                 {difficultyLabel[stage.difficulty]}
               </span>
               {stage.highlight && !done && (
-                <Text as='caption' className='font-bold text-[#4576fc]'>
+                <span className='text-xs font-bold text-blue-500'>
                   {stage.highlight}
-                </Text>
+                </span>
               )}
-              <Text as='caption' className='text-gray-500'>
+              <span className='text-xs font-medium text-gray-500'>
                 ⏱ {stage.hours}시간
-              </Text>
+              </span>
               {playgroundReady && (
-                <span className='inline-flex items-center gap-1 rounded-full bg-emerald-500 px-2 py-0.5 text-[10px] font-bold text-white'>
+                <span className='inline-flex items-center gap-1 rounded-full bg-blue-500 px-2 py-0.5 text-[10px] font-bold text-white'>
                   🕹️ 플레이 가능
                 </span>
               )}
@@ -93,7 +92,7 @@ export default function StageCard({ stage }: StageCardProps) {
           <div className='flex items-center gap-2'>
             <div className='h-1.5 w-24 overflow-hidden rounded-full bg-gray-100'>
               <div
-                className='h-full rounded-full bg-[#4576fc]'
+                className='h-full rounded-full bg-blue-500'
                 style={{
                   width: `${Math.round(
                     (stage.progress.current / stage.progress.total) * 100
