@@ -24,7 +24,7 @@ export default async function Home({ searchParams }: HomeProps) {
           <div className='flex flex-col items-center text-center'>
             <Badge label='🎮 React Quest' theme='orange' size='md' />
             <Text as='display' className='mt-6 break-keep whitespace-pre-line'>
-              {`훅을 눌러보고\n망가뜨리며 체화하는 `}
+              {`훅을 눌러보고\n망가뜨리며 체험하는 `}
               <span className='text-orange-500'>놀이터</span>
             </Text>
             <Text as='body' className='mt-6 max-w-xl text-gray-500'>
@@ -48,7 +48,7 @@ export default async function Home({ searchParams }: HomeProps) {
           <SectionHeader
             badge='🗺 로드맵'
             title='어디서부터 시작해볼까?'
-            description='5개 탭 · 28개 스테이지 · 클리어하면 뱃지 자동 해금'
+            description='5개 탭 · 28개 스테이지 · 클리어 하면 뱃지 자동 해제'
           />
         </FadeIn>
         <div className='mt-10'>
