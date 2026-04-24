@@ -52,7 +52,7 @@ export default function UseCopyDemo() {
             'mt-3 inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm font-bold transition',
             copied
               ? 'bg-emerald-500 text-white'
-              : 'bg-[#ff5e48] text-white hover:bg-[#ec4b36]'
+              : 'bg-[#4576fc] text-white hover:bg-[#2355de]'
           )}
         >
           {copied ? '✅ 복사됨!' : '📋 복사하기'}

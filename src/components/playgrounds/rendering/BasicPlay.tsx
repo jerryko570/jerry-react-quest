@@ -25,7 +25,7 @@ export default function BasicPlay() {
       <button
         type='button'
         onClick={() => setCount((c) => c + 1)}
-        className='w-full rounded-full bg-[#ff5e48] px-6 py-4 text-base font-bold text-white shadow-sm hover:bg-[#ec4b36]'
+        className='w-full rounded-full bg-[#4576fc] px-6 py-4 text-base font-bold text-white shadow-sm hover:bg-[#2355de]'
       >
         🎲 이 버튼을 눌러봐 — 부모가 다시 그려져 ({count})
       </button>

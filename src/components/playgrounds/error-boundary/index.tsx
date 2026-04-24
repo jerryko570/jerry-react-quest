@@ -1,36 +1,55 @@
 import Explosion from './Explosion'
-import GoalViz from './GoalViz'
-import PlaygroundSection from '@/components/stages/PlaygroundSection'
+import CodeBlock from '@/components/stages/CodeBlock'
+import StageFlow from '@/components/stages/StageFlow'
 
 export default function ErrorBoundaryPlayground() {
   return (
-    <div className='flex flex-col gap-12'>
-      <div className='rounded-2xl bg-linear-to-br from-[#fff5f4] to-[#ffe8e3] p-5'>
-        <div className='flex items-start gap-3'>
-          <span className='text-3xl'>🎮</span>
-          <div>
-            <div className='font-extrabold'>자식을 진짜로 터뜨려보자</div>
-            <p className='mt-1 text-sm text-gray-700'>
-              💥 버튼으로 자식에 에러를 던지고, Error Boundary 토글을 껐다 켰다
-              해보자. &quot;있을 때&quot;와 &quot;없을 때&quot; 의 차이를 직접
-              느낄 수 있어.
-            </p>
-          </div>
-        </div>
-      </div>
+    <StageFlow>
+      <StageFlow.Empathy>
+        💥 &quot;자식 하나 터졌는데 페이지 전체가 하얘져버림&quot; —
+        프로덕션에서 제일 흔한 지옥이야.
+      </StageFlow.Empathy>
 
-      <GoalViz />
-
-      <div className='border-t border-gray-200' />
-
-      <PlaygroundSection
-        index='A'
-        emoji='🧯'
-        title='자식 폭파 + 폴백 UI + 다시 시도'
-        description='Error Boundary 유무 토글 + 자식 throw + 폴백 UI 렌더 + 복구 버튼. 실제 서비스에서 쓸 패턴 그대로.'
-      >
+      <StageFlow.Play subtitle='💥 터뜨리기 버튼부터 눌러봐'>
         <Explosion />
-      </PlaygroundSection>
-    </div>
+      </StageFlow.Play>
+
+      <StageFlow.Observe
+        title='🤔 Error Boundary 끄면 화면이 하얘져'
+        subtitle='왜 그럴까?'
+      >
+        <p>
+          🟢 리액트는 자식이 throw하면 <b>상위 전체를 언마운트</b>해. 안전하게
+          다루지 않으면 앱 통째가 날아가.
+        </p>
+        <p className='mt-2'>
+          🟢 <code>ErrorBoundary</code>로 감싸면 그 안쪽에서만 격리되고, 다른
+          영역은 그대로. 폴백 UI로 &quot;다시 시도&quot; 까지 제공 가능.
+        </p>
+      </StageFlow.Observe>
+
+      <StageFlow.Next subtitle='코드 + 정리 + 다음'>
+        <p className='mb-3'>
+          ✔️ 에러 날 가능성이 있는 섹션은 <b>Error Boundary로 감싼다</b>.
+          렌더·생성자·라이프사이클 오류만 잡음 — 이벤트 핸들러·비동기는
+          try/catch로.
+        </p>
+        <CodeBlock
+          filename='react-error-boundary (실전)'
+          code={`import { ErrorBoundary } from 'react-error-boundary'
+
+<ErrorBoundary
+  FallbackComponent={ErrorFallback}
+  onReset={() => queryClient.resetQueries()}
+>
+  <DangerousSection />
+</ErrorBoundary>`}
+        />
+        <p className='mt-4 text-gray-700'>
+          🎣 훅 탭은 여기서 완주. 다음은 <b>useMemo</b>부터 시작하는 ⚡ 성능 탭
+          🚀
+        </p>
+      </StageFlow.Next>
+    </StageFlow>
   )
 }

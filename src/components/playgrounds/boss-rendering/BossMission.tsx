@@ -65,7 +65,7 @@ export default function BossMission() {
         <button
           type='button'
           onClick={measuredBump}
-          className='rounded-full bg-[#ff5e48] px-4 py-2 text-sm font-bold text-white hover:bg-[#ec4b36]'
+          className='rounded-full bg-[#4576fc] px-4 py-2 text-sm font-bold text-white hover:bg-[#2355de]'
         >
           🎲 부모 리렌더 (무관한 state) {bump}
         </button>

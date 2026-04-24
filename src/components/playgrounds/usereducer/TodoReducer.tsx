@@ -180,12 +180,12 @@ function TodoView({
             if (e.key === 'Enter') onAdd()
           }}
           placeholder='할 일 추가'
-          className='flex-1 rounded-lg border border-gray-200 bg-white px-2 py-1 text-xs focus:border-[#ff5e48] focus:outline-none'
+          className='flex-1 rounded-lg border border-gray-200 bg-white px-2 py-1 text-xs focus:border-[#4576fc] focus:outline-none'
         />
         <button
           type='button'
           onClick={onAdd}
-          className='rounded-full bg-[#ff5e48] px-3 py-1 text-xs font-bold text-white hover:bg-[#ec4b36]'
+          className='rounded-full bg-[#4576fc] px-3 py-1 text-xs font-bold text-white hover:bg-[#2355de]'
         >
           ➕
         </button>

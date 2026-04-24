@@ -1,37 +1,48 @@
-import GoalViz from './GoalViz'
 import OptimisticLike from './OptimisticLike'
-import PlaygroundSection from '@/components/stages/PlaygroundSection'
+import CodeBlock from '@/components/stages/CodeBlock'
+import StageFlow from '@/components/stages/StageFlow'
 
 export default function React19ActionsPlayground() {
   return (
-    <div className='flex flex-col gap-12'>
-      <div className='rounded-2xl bg-linear-to-br from-[#fff5f4] to-[#ffe8e3] p-5'>
-        <div className='flex items-start gap-3'>
-          <span className='text-3xl'>🎮</span>
-          <div>
-            <div className='font-extrabold'>
-              좋아요 버튼 — 3종 훅이 협주하는 모습
-            </div>
-            <p className='mt-1 text-sm text-gray-700'>
-              서버 응답 1초 · 20% 실패 확률. 버튼 눌러서 낙관적 UI가 즉시
-              반응하고, 실패하면 자동 롤백되는 걸 확인해봐.
-            </p>
-          </div>
-        </div>
-      </div>
+    <StageFlow>
+      <StageFlow.Empathy>
+        ⚡ &quot;좋아요 눌렀는데 1초 기다려야 UI 바뀌는 거 답답해&quot; — React
+        19 Actions로 즉시.
+      </StageFlow.Empathy>
 
-      <GoalViz />
-
-      <div className='border-t border-gray-200' />
-
-      <PlaygroundSection
-        index='A'
-        emoji='❤️'
-        title='useOptimistic + useActionState'
-        description='실제 서버 없이 mock mutation. 낙관적 UI · pending · 실패 시 롤백 세 가지를 한 버튼에서 체험.'
-      >
+      <StageFlow.Play subtitle='좋아요 연타. 20% 실패 확률'>
         <OptimisticLike />
-      </PlaygroundSection>
-    </div>
+      </StageFlow.Play>
+
+      <StageFlow.Observe title='🤔 누르자마자 UI 바뀌고, 실패하면 롤백되네'>
+        <p>
+          🟢 <code>useOptimistic</code>이 UI 미리 업데이트, 서버 실패 시 자동
+          롤백.
+        </p>
+        <p className='mt-3'>
+          🟢 <code>useActionState</code>가 pending·결과·에러를 한 훅에.
+        </p>
+      </StageFlow.Observe>
+
+      <StageFlow.Next subtitle='코드 + 정리 + 다음'>
+        <p className='mb-4'>
+          ✔️ Server Actions와 조합 시 폼이 <b>JS 없이도 동작</b>.
+        </p>
+        <CodeBlock
+          filename='Actions 3종 세트'
+          code={`const [optimistic, add] = useOptimistic(real, (cur, id) => ...)
+const [error, action, isPending] = useActionState(async (_p, id) => {
+  const r = await serverAction(id)
+  return r.error
+}, null)
+
+startTransition(() => {
+  add(id)      // 낙관적 UI
+  action(id)   // 서버 호출
+})`}
+        />
+        <p className='mt-5 text-gray-700'>다음은 Next.js App Router 🚀</p>
+      </StageFlow.Next>
+    </StageFlow>
   )
 }

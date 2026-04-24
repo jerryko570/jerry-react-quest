@@ -1,37 +1,46 @@
-import GoalViz from './GoalViz'
 import MemoShallow from './MemoShallow'
-import PlaygroundSection from '@/components/stages/PlaygroundSection'
+import CodeBlock from '@/components/stages/CodeBlock'
+import StageFlow from '@/components/stages/StageFlow'
 
 export default function ReactMemoPlayground() {
   return (
-    <div className='flex flex-col gap-12'>
-      <div className='rounded-2xl bg-linear-to-br from-[#fff5f4] to-[#ffe8e3] p-5'>
-        <div className='flex items-start gap-3'>
-          <span className='text-3xl'>🎮</span>
-          <div>
-            <div className='font-extrabold'>
-              세 자식 모두 memo. 카운트는 왜 달라지나?
-            </div>
-            <p className='mt-1 text-sm text-gray-700'>
-              부모 리렌더 버튼을 연타하고 세 자식의 렌더 횟수를 비교해봐. 얕은
-              비교의 규칙이 한눈에 들어올 거야.
-            </p>
-          </div>
-        </div>
-      </div>
+    <StageFlow>
+      <StageFlow.Empathy>
+        🛡️ &quot;memo로 감쌌는데 왜 효과 없어?&quot; — props 타입에 따라 결과가
+        전혀 달라.
+      </StageFlow.Empathy>
 
-      <GoalViz />
-
-      <div className='border-t border-gray-200' />
-
-      <PlaygroundSection
-        index='A'
-        emoji='🛡️'
-        title='얕은 비교 시각화 — primitive · 새 객체 · 고정 객체'
-        description='같은 memo 자식이지만 받는 props 성격이 다름. 어떤 경우에 memo가 진짜 스킵하고 어떤 경우 무력해지는지 확인.'
-      >
+      <StageFlow.Play subtitle='🎲 부모 리렌더 눌러봐. 세 자식 카운트 차이'>
         <MemoShallow />
-      </PlaygroundSection>
-    </div>
+      </StageFlow.Play>
+
+      <StageFlow.Observe title='🤔 세 자식 모두 memo인데 왜 다르게 행동?'>
+        <p>🟢 얕은 비교 — primitive(number)는 값으로 비교 → 같으면 스킵.</p>
+        <p className='mt-3'>
+          🟢 객체·배열·함수는 참조로 비교. 매번 새로 만들면 항상
+          &quot;다름&quot;.
+          <code>useMemo</code>로 고정해야 함.
+        </p>
+      </StageFlow.Observe>
+
+      <StageFlow.Next subtitle='코드 + 정리 + 다음'>
+        <p className='mb-4'>
+          ✔️ memo 혼자선 반쪽. <b>useMemo/useCallback과 세트</b>로.
+        </p>
+        <CodeBlock
+          filename='3종 세트'
+          code={`const HeavyChild = memo(ChildImpl)
+
+function Parent() {
+  const items = useMemo(() => build(), [])
+  const onAction = useCallback(fn, [])
+  return <HeavyChild items={items} onAction={onAction} />
+}`}
+        />
+        <p className='mt-5 text-gray-700'>
+          다음은 <b>React Compiler</b> 🚀
+        </p>
+      </StageFlow.Next>
+    </StageFlow>
   )
 }

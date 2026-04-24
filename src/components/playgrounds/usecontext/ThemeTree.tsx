@@ -105,7 +105,7 @@ export default function ThemeTree() {
         <button
           type='button'
           onClick={toggle}
-          className='rounded-full bg-[#ff5e48] px-4 py-2 text-sm font-bold text-white hover:bg-[#ec4b36]'
+          className='rounded-full bg-[#4576fc] px-4 py-2 text-sm font-bold text-white hover:bg-[#2355de]'
         >
           🎛️ 테마 토글 (현재: {theme === 'dark' ? '🌙 다크' : '☀️ 라이트'})
         </button>

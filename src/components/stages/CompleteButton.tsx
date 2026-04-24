@@ -51,7 +51,7 @@ export default function CompleteButton({ stageId }: Props) {
       <button
         type='button'
         onClick={() => markCompleted(stageId)}
-        className='inline-flex items-center gap-2 rounded-full bg-[#ff5e48] px-6 py-3 font-bold text-white shadow-sm transition hover:bg-[#ec4b36]'
+        className='inline-flex items-center gap-2 rounded-full bg-[#4576fc] px-6 py-3 font-bold text-white shadow-sm transition hover:bg-[#2355de]'
       >
         ✅ 정복했어!
       </button>

@@ -112,7 +112,7 @@ export default function CompoundDemo() {
 
         <Tabs.Panel value='button'>
           <div className='flex flex-wrap gap-2'>
-            <button className='rounded-full bg-[#ff5e48] px-4 py-2 text-sm font-bold text-white'>
+            <button className='rounded-full bg-[#4576fc] px-4 py-2 text-sm font-bold text-white'>
               Primary
             </button>
             <button className='rounded-full border border-gray-300 bg-white px-4 py-2 text-sm font-bold text-gray-700'>
@@ -127,7 +127,7 @@ export default function CompoundDemo() {
         <Tabs.Panel value='input'>
           <input
             placeholder='이메일 입력'
-            className='w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-[#ff5e48] focus:outline-none'
+            className='w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-[#4576fc] focus:outline-none'
           />
         </Tabs.Panel>
 

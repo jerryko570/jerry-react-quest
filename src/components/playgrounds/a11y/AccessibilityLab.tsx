@@ -40,7 +40,7 @@ function AriaLiveDemo() {
           onClick={() =>
             notify(`📧 메일 전송됨 (${new Date().toLocaleTimeString('ko-KR')})`)
           }
-          className='rounded-full bg-[#ff5e48] px-3 py-1 text-xs font-bold text-white hover:bg-[#ec4b36]'
+          className='rounded-full bg-[#4576fc] px-3 py-1 text-xs font-bold text-white hover:bg-[#2355de]'
         >
           📧 메일
         </button>
@@ -120,7 +120,7 @@ function FocusTrapModal() {
         ref={openerRef}
         type='button'
         onClick={() => setOpen(true)}
-        className='rounded-full bg-[#ff5e48] px-4 py-2 text-sm font-bold text-white hover:bg-[#ec4b36]'
+        className='rounded-full bg-[#4576fc] px-4 py-2 text-sm font-bold text-white hover:bg-[#2355de]'
       >
         🪟 모달 열기
       </button>
@@ -153,7 +153,7 @@ function FocusTrapModal() {
               <button
                 type='button'
                 onClick={() => setOpen(false)}
-                className='rounded-full bg-[#ff5e48] px-4 py-2 text-sm font-bold text-white hover:bg-[#ec4b36]'
+                className='rounded-full bg-[#4576fc] px-4 py-2 text-sm font-bold text-white hover:bg-[#2355de]'
               >
                 확인
               </button>
@@ -190,7 +190,7 @@ function LabelInputDemo() {
           <input
             id={nameId}
             type='text'
-            className='w-full rounded-lg border border-gray-200 bg-gray-50 px-2 py-1 text-sm focus:border-[#ff5e48] focus:outline-none'
+            className='w-full rounded-lg border border-gray-200 bg-gray-50 px-2 py-1 text-sm focus:border-[#4576fc] focus:outline-none'
           />
         </div>
         <div>
@@ -201,7 +201,7 @@ function LabelInputDemo() {
             id={emailId}
             type='email'
             aria-describedby={helpId}
-            className='w-full rounded-lg border border-gray-200 bg-gray-50 px-2 py-1 text-sm focus:border-[#ff5e48] focus:outline-none'
+            className='w-full rounded-lg border border-gray-200 bg-gray-50 px-2 py-1 text-sm focus:border-[#4576fc] focus:outline-none'
           />
           <p id={helpId} className='mt-1 text-[11px] text-gray-500'>
             비밀번호 재설정 용도로만 사용됩니다.
@@ -226,8 +226,8 @@ function FocusVisibleDemo() {
         <button
           type='button'
           className={cn(
-            'rounded-full bg-[#ff5e48] px-4 py-2 text-sm font-bold text-white transition',
-            'focus-visible:ring-4 focus-visible:ring-[#ff5e48]/40 focus-visible:outline-none'
+            'rounded-full bg-[#4576fc] px-4 py-2 text-sm font-bold text-white transition',
+            'focus-visible:ring-4 focus-visible:ring-[#4576fc]/40 focus-visible:outline-none'
           )}
         >
           기본 버튼
@@ -236,7 +236,7 @@ function FocusVisibleDemo() {
           type='button'
           className={cn(
             'rounded-full border-2 border-gray-300 bg-white px-4 py-2 text-sm font-bold text-gray-700 transition',
-            'focus-visible:border-[#ff5e48] focus-visible:ring-2 focus-visible:ring-[#ff5e48]/40 focus-visible:outline-none'
+            'focus-visible:border-[#4576fc] focus-visible:ring-2 focus-visible:ring-[#4576fc]/40 focus-visible:outline-none'
           )}
         >
           보조 버튼

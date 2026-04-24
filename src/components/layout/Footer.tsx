@@ -26,7 +26,7 @@ export default function Footer() {
               href={href}
               target='_blank'
               rel='noopener noreferrer'
-              className='inline-flex items-center gap-2 rounded-full border-2 border-gray-200 bg-white px-6 py-3 text-sm font-semibold text-gray-900 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#ff5e48] hover:text-[#ff5e48]'
+              className='inline-flex items-center gap-2 rounded-full border-2 border-gray-200 bg-white px-6 py-3 text-sm font-semibold text-gray-900 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#4576fc] hover:text-[#4576fc]'
             >
               {label}
             </a>

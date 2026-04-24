@@ -16,9 +16,9 @@ const KIND_STYLES: Record<
   { border: string; badge: string; bg: string }
 > = {
   play: {
-    border: 'border-[#ff5e48]',
-    badge: 'bg-[#ff5e48] text-white',
-    bg: 'bg-[#fff5f4]',
+    border: 'border-[#4576fc]',
+    badge: 'bg-[#4576fc] text-white',
+    bg: 'bg-[#f4f7ff]',
   },
   observe: {
     border: 'border-emerald-300',
@@ -71,7 +71,7 @@ function Root({ children }: { children: ReactNode }) {
 // 공감 한 줄 — 인트로 바 (섹션 번호 없음)
 function Empathy({ children }: { children: ReactNode }) {
   return (
-    <div className='rounded-2xl bg-linear-to-br from-[#fff5f4] to-[#ffe8e3] px-6 py-4'>
+    <div className='rounded-2xl bg-linear-to-br from-[#f4f7ff] to-[#e7edff] px-6 py-4'>
       <p className='text-base font-bold text-gray-800'>{children}</p>
     </div>
   )

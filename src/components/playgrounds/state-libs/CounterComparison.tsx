@@ -175,8 +175,8 @@ export default function CounterComparison() {
               className={cn(
                 'rounded-full border-2 px-4 py-2 text-sm font-bold transition',
                 active === id
-                  ? 'border-[#ff5e48] bg-[#ff5e48] text-white'
-                  : 'border-gray-200 bg-white text-gray-700 hover:border-[#ff5e48]'
+                  ? 'border-[#4576fc] bg-[#4576fc] text-white'
+                  : 'border-gray-200 bg-white text-gray-700 hover:border-[#4576fc]'
               )}
             >
               {l.emoji} {l.title}

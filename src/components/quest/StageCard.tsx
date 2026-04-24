@@ -36,7 +36,7 @@ export default function StageCard({ stage }: StageCardProps) {
       aria-label={`${stage.title} 상세로 이동`}
       className={cn(
         stageCardVariants({ status: effectiveStatus, boss: stage.isBoss }),
-        'block p-6 focus-visible:ring-2 focus-visible:ring-[#ff5e48] focus-visible:outline-none',
+        'block p-6 focus-visible:ring-2 focus-visible:ring-[#4576fc] focus-visible:outline-none',
         effectiveStatus === 'locked' && 'hover:translate-y-0 hover:shadow-none'
       )}
     >
@@ -69,7 +69,7 @@ export default function StageCard({ stage }: StageCardProps) {
                 {difficultyLabel[stage.difficulty]}
               </span>
               {stage.highlight && !done && (
-                <Text as='caption' className='font-bold text-[#ff5e48]'>
+                <Text as='caption' className='font-bold text-[#4576fc]'>
                   {stage.highlight}
                 </Text>
               )}
@@ -93,7 +93,7 @@ export default function StageCard({ stage }: StageCardProps) {
           <div className='flex items-center gap-2'>
             <div className='h-1.5 w-24 overflow-hidden rounded-full bg-gray-100'>
               <div
-                className='h-full rounded-full bg-[#ff5e48]'
+                className='h-full rounded-full bg-[#4576fc]'
                 style={{
                   width: `${Math.round(
                     (stage.progress.current / stage.progress.total) * 100

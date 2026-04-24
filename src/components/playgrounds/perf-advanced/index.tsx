@@ -1,37 +1,40 @@
 import ChecklistCards from './ChecklistCards'
-import GoalViz from './GoalViz'
-import PlaygroundSection from '@/components/stages/PlaygroundSection'
+import StageFlow from '@/components/stages/StageFlow'
 
 export default function PerfAdvancedPlayground() {
   return (
-    <div className='flex flex-col gap-12'>
-      <div className='rounded-2xl bg-linear-to-br from-[#fff5f4] to-[#ffe8e3] p-5'>
-        <div className='flex items-start gap-3'>
-          <span className='text-3xl'>🚀</span>
-          <div>
-            <div className='font-extrabold'>
-              리렌더 최적화 다음 단계 — 번들 · 이미지 · Web Vitals
-            </div>
-            <p className='mt-1 text-sm text-gray-700'>
-              앱이 여전히 느리다면 이 단계로 내려와. Next.js 내장 기능 3가지와
-              Web Vitals 목표치를 Before/After로 카드 넘기며 확인.
-            </p>
-          </div>
-        </div>
-      </div>
+    <StageFlow>
+      <StageFlow.Empathy>
+        🚀 &quot;리렌더 최적화 다 했는데 여전히 느려&quot; — 그땐
+        번들·이미지·Web Vitals로 내려가는 거야.
+      </StageFlow.Empathy>
 
-      <GoalViz />
-
-      <div className='border-t border-gray-200' />
-
-      <PlaygroundSection
-        index='A'
-        emoji='📋'
-        title='최적화 체크 카드 5종'
-        description='코드 스플리팅 · React.lazy · next/image · next/font · Web Vitals — 각 카드마다 Before/After 코드와 개선 포인트.'
-      >
+      <StageFlow.Play subtitle='5장 카드 Before/After로 넘겨봐'>
         <ChecklistCards />
-      </PlaygroundSection>
-    </div>
+      </StageFlow.Play>
+
+      <StageFlow.Observe
+        title='🤔 Next.js 기본 기능만 잘 써도 Lighthouse 90+가 가능해'
+        subtitle='어떻게?'
+      >
+        <p>
+          🟢 <b>코드 스플리팅</b> (next/dynamic · React.lazy)으로 초기 번들
+          축소.
+        </p>
+        <p className='mt-3'>
+          🟢 <code>next/image</code> · <code>next/font</code>로 LCP·CLS 자동
+          개선. 나머진 Web Vitals 지표 보며 튜닝.
+        </p>
+      </StageFlow.Observe>
+
+      <StageFlow.Next subtitle='정리 + 다음'>
+        <p className='mb-3'>
+          ✔️ 성능은 <b>측정 → 가설 → 수정 → 재측정</b> 루프. 감으로 고치지 말고.
+        </p>
+        <p className='text-gray-700'>
+          ⚡ 성능 탭 완주. 다음은 상태 관리의 시작 <b>useContext</b> 🚀
+        </p>
+      </StageFlow.Next>
+    </StageFlow>
   )
 }

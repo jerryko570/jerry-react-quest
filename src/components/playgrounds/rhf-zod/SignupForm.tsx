@@ -135,7 +135,7 @@ export default function SignupForm() {
 
         <button
           type='submit'
-          className='mt-4 w-full rounded-full bg-[#ff5e48] px-6 py-3 font-bold text-white shadow-sm hover:bg-[#ec4b36] disabled:opacity-50'
+          className='mt-4 w-full rounded-full bg-[#4576fc] px-6 py-3 font-bold text-white shadow-sm hover:bg-[#2355de] disabled:opacity-50'
         >
           회원가입
         </button>
@@ -279,7 +279,7 @@ function Field({
           'w-full rounded-lg border bg-white px-3 py-2 text-sm focus:outline-none',
           error
             ? 'border-red-400 focus:border-red-500'
-            : 'border-gray-200 focus:border-[#ff5e48]'
+            : 'border-gray-200 focus:border-[#4576fc]'
         )}
       />
       {error && (

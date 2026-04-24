@@ -37,7 +37,7 @@ export default function UseDebounceDemo() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder='여기에 빠르게 타이핑...'
-          className='w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 font-mono text-sm focus:border-[#ff5e48] focus:outline-none'
+          className='w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 font-mono text-sm focus:border-[#4576fc] focus:outline-none'
         />
         <div className='mt-3 flex items-center gap-2 text-xs text-gray-600'>
           <span>debounce 딜레이:</span>

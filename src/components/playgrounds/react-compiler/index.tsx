@@ -1,36 +1,37 @@
 import CompilerDemo from './CompilerDemo'
-import GoalViz from './GoalViz'
-import PlaygroundSection from '@/components/stages/PlaygroundSection'
+import StageFlow from '@/components/stages/StageFlow'
 
 export default function ReactCompilerPlayground() {
   return (
-    <div className='flex flex-col gap-12'>
-      <div className='rounded-2xl bg-linear-to-br from-[#fff5f4] to-[#ffe8e3] p-5'>
-        <div className='flex items-start gap-3'>
-          <span className='text-3xl'>🎮</span>
-          <div>
-            <div className='font-extrabold'>useMemo는 과거형이 되어간다</div>
-            <p className='mt-1 text-sm text-gray-700'>
-              React 19부터 안정화된 Compiler가 수동 메모이제이션의 90%를 대체해.
-              시나리오 4개를 Before/After로 훑고, 여전히 수동이 필요한 순간이
-              언제인지 감 잡아보자.
-            </p>
-          </div>
-        </div>
-      </div>
+    <StageFlow>
+      <StageFlow.Empathy>
+        🤖 &quot;또 memo 감싸야 해?&quot; — 2026년 React Compiler가 대부분
+        자동화해줘.
+      </StageFlow.Empathy>
 
-      <GoalViz />
-
-      <div className='border-t border-gray-200' />
-
-      <PlaygroundSection
-        index='A'
-        emoji='🤖'
-        title='Compiler Before/After 카드 넘기기'
-        description='useMemo · useCallback · 인라인 객체 · 자동화 한계 4가지 시나리오. 버튼 눌러 같은 문제를 두 방식으로 바라보기.'
-      >
+      <StageFlow.Play subtitle='4개 시나리오 Before/After 넘기며'>
         <CompilerDemo />
-      </PlaygroundSection>
-    </div>
+      </StageFlow.Play>
+
+      <StageFlow.Observe title='🤔 왜 자동화 방향으로?'>
+        <p>
+          🟢 Compiler가 빌드 타임에 코드 분석해 useMemo/useCallback/memo 자동
+          주입.
+        </p>
+        <p className='mt-3'>
+          🟢 개발자는 평범하게 쓰고, 컴파일러가 성능 최적화 대신. 분석 못 하는
+          특수 케이스만 수동.
+        </p>
+      </StageFlow.Observe>
+
+      <StageFlow.Next subtitle='정리 + 다음'>
+        <p className='mb-3'>
+          ✔️ 2026년 기준 <b>React 19 + Compiler</b>가 표준. 점진적 적용 가능.
+        </p>
+        <p className='text-gray-700'>
+          다음은 렌더링 최적화 <b>보스전</b> 🚀
+        </p>
+      </StageFlow.Next>
+    </StageFlow>
   )
 }

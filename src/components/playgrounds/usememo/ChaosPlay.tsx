@@ -49,7 +49,7 @@ export default function ChaosPlay() {
       <button
         type='button'
         onClick={onClick}
-        className='w-full rounded-full bg-[#ff5e48] px-6 py-4 text-base font-bold text-white shadow-sm hover:bg-[#ec4b36]'
+        className='w-full rounded-full bg-[#4576fc] px-6 py-4 text-base font-bold text-white shadow-sm hover:bg-[#2355de]'
       >
         🎲 이 버튼 연타해봐 ({count})
       </button>
@@ -61,7 +61,7 @@ export default function ChaosPlay() {
         </span>
       </div>
 
-      <div className='grid grid-cols-5 gap-2 rounded-xl bg-linear-to-br from-red-50 to-orange-50 p-3 sm:grid-cols-8'>
+      <div className='grid grid-cols-5 gap-2 rounded-xl bg-linear-to-br from-red-50 to-blue-200 p-3 sm:grid-cols-8'>
         {seeds.map((s) => (
           <ChaosCard key={s} seed={s} />
         ))}

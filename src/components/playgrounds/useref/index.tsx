@@ -1,47 +1,77 @@
 import FocusDemo from './FocusDemo'
-import GoalViz from './GoalViz'
 import PreviousDemo from './PreviousDemo'
-import PlaygroundSection from '@/components/stages/PlaygroundSection'
+import CodeBlock from '@/components/stages/CodeBlock'
+import StageFlow from '@/components/stages/StageFlow'
 
 export default function UseRefPlayground() {
   return (
-    <div className='flex flex-col gap-12'>
-      <div className='rounded-2xl bg-linear-to-br from-[#fff5f4] to-[#ffe8e3] p-5'>
-        <div className='flex items-start gap-3'>
-          <span className='text-3xl'>🎮</span>
-          <div>
-            <div className='font-extrabold'>
-              ref는 &quot;리렌더 없이&quot;가 매력
-            </div>
-            <p className='mt-1 text-sm text-gray-700'>
-              첫 놀이기구에서 DOM에 직접 닿는 경험, 두 번째에서 렌더와 무관한 값
-              저장소로서의 쓰임을 확인하자.
-            </p>
-          </div>
-        </div>
-      </div>
+    <StageFlow>
+      <StageFlow.Empathy>
+        🎯 &quot;input에 자동으로 커서 가게 하고 싶은데 어떻게 하지?&quot; —
+        useState로 고민하지 말고 ref로 해.
+      </StageFlow.Empathy>
 
-      <GoalViz />
-
-      <div className='border-t border-gray-200' />
-
-      <PlaygroundSection
-        index='A'
-        emoji='🎯'
-        title='DOM 직접 조작 (포커스 · 스크롤)'
-        description='input에 포커스, 컨테이너 스크롤을 ref로 직접. state 없이도 리액트가 DOM을 넘겨준다.'
-      >
+      <StageFlow.Play subtitle='포커스 · 스크롤 버튼 눌러봐'>
         <FocusDemo />
-      </PlaygroundSection>
+      </StageFlow.Play>
 
-      <PlaygroundSection
-        index='B'
-        emoji='🕓'
-        title='usePrevious — 이전 값 추적'
-        description='useRef + useEffect 조합으로 "한 박자 늦게" 갱신되는 저장소. 렌더와 무관한 값 저장소로서의 ref.'
+      <StageFlow.Observe
+        title='🤔 버튼 눌러도 리렌더가 안 됐는데 왜 움직여?'
+        subtitle='ref는 state와 다르거든'
+      >
+        <p>
+          🟢 <code>useRef</code>는 &quot;렌더와 무관한 저장소&quot;. 바뀌어도
+          리액트가 다시 그리지 않아.
+        </p>
+        <p className='mt-3'>
+          🟢 <b>DOM 노드 포인터</b>로도 써.{' '}
+          <code>{'<input ref={myRef} />'}</code> 하면 current에 실제 DOM이
+          들어와.
+        </p>
+      </StageFlow.Observe>
+
+      <StageFlow.Deepen
+        title='🕓 이번엔 "이전 값" 기억하는 usePrevious'
+        subtitle='렌더와 무관한 저장소 응용'
       >
         <PreviousDemo />
-      </PlaygroundSection>
-    </div>
+      </StageFlow.Deepen>
+
+      <StageFlow.Next subtitle='코드 + 정리 + 다음'>
+        <p className='mb-4'>
+          ✔️ 화면에 <b>보여야 하는 값</b>이면 state, 아니면 ref.
+        </p>
+        <div className='grid gap-4 md:grid-cols-2'>
+          <div>
+            <div className='mb-2 inline-block rounded-full bg-amber-100 px-3 py-1 text-xs font-bold text-amber-800'>
+              📍 DOM 접근용
+            </div>
+            <CodeBlock
+              filename='input 포커스'
+              code={`const inputRef = useRef<HTMLInputElement>(null)
+
+<input ref={inputRef} />
+<button onClick={() => inputRef.current?.focus()}>포커스</button>`}
+            />
+          </div>
+          <div>
+            <div className='mb-2 inline-block rounded-full bg-violet-100 px-3 py-1 text-xs font-bold text-violet-800'>
+              📦 값 저장용
+            </div>
+            <CodeBlock
+              filename='usePrevious'
+              code={`function usePrevious<T>(value: T): T | undefined {
+  const ref = useRef<T | undefined>(undefined)
+  useEffect(() => { ref.current = value }, [value])
+  return ref.current
+}`}
+            />
+          </div>
+        </div>
+        <p className='mt-5 text-gray-700'>
+          다음은 자식 에러를 깔끔하게 잡는 <b>Error Boundary</b> 🚀
+        </p>
+      </StageFlow.Next>
+    </StageFlow>
   )
 }

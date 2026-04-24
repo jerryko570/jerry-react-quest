@@ -115,8 +115,8 @@ export default function OptimisticLike() {
               className={cn(
                 'flex items-center gap-1.5 rounded-full border-2 px-4 py-2 text-sm font-bold transition',
                 p.liked
-                  ? 'border-[#ff5e48] bg-[#fff5f4] text-[#ff5e48]'
-                  : 'border-gray-200 bg-white text-gray-700 hover:border-[#ff5e48]',
+                  ? 'border-[#4576fc] bg-[#f4f7ff] text-[#4576fc]'
+                  : 'border-gray-200 bg-white text-gray-700 hover:border-[#4576fc]',
                 isPending && 'opacity-60'
               )}
             >

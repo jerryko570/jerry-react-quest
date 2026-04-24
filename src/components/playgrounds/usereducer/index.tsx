@@ -1,36 +1,47 @@
-import GoalViz from './GoalViz'
 import TodoReducer from './TodoReducer'
-import PlaygroundSection from '@/components/stages/PlaygroundSection'
+import CodeBlock from '@/components/stages/CodeBlock'
+import StageFlow from '@/components/stages/StageFlow'
 
 export default function UseReducerPlayground() {
   return (
-    <div className='flex flex-col gap-12'>
-      <div className='rounded-2xl bg-linear-to-br from-[#fff5f4] to-[#ffe8e3] p-5'>
-        <div className='flex items-start gap-3'>
-          <span className='text-3xl'>🎮</span>
-          <div>
-            <div className='font-extrabold'>같은 Todo, 두 가지 방식</div>
-            <p className='mt-1 text-sm text-gray-700'>
-              왼쪽은 useState로, 오른쪽은 useReducer로 구현한 똑같은 Todo야.
-              추가 · 토글 · 필터 · 일괄 삭제를 양쪽에서 조작하며 어느 쪽이 더
-              읽기 좋은지 체감해봐.
-            </p>
-          </div>
-        </div>
-      </div>
+    <StageFlow>
+      <StageFlow.Empathy>
+        ⚙️ &quot;state 3개 넘으니까 setX가 흩어져&quot; — reducer 차례야.
+      </StageFlow.Empathy>
 
-      <GoalViz />
-
-      <div className='border-t border-gray-200' />
-
-      <PlaygroundSection
-        index='A'
-        emoji='📋'
-        title='Todo 리스트 — useState vs useReducer'
-        description='추가/토글/필터/완료 일괄 삭제를 같은 UI에 구현한 두 버전. 상태가 3개 이상 묶일 때 reducer가 빛을 발한다.'
-      >
+      <StageFlow.Play subtitle='두 Todo 나란히 조작해봐'>
         <TodoReducer />
-      </PlaygroundSection>
-    </div>
+      </StageFlow.Play>
+
+      <StageFlow.Observe title='🤔 왜 reducer 쪽이 더 읽기 쉽지?'>
+        <p>🟢 useState는 setX가 이벤트 핸들러마다 흩어져 규칙 깨지기 쉬움.</p>
+        <p className='mt-3'>
+          🟢 useReducer는 모든 변화를 action 타입으로 선언. dispatch만 하면 돼.
+        </p>
+      </StageFlow.Observe>
+
+      <StageFlow.Next subtitle='코드 + 정리 + 다음'>
+        <p className='mb-4'>
+          ✔️ state 3+개 얽히면 reducer. 순수 함수라 테스트도 쉬움.
+        </p>
+        <CodeBlock
+          filename='reducer 패턴'
+          code={`type Action = { type: 'add'; text: string } | { type: 'toggle'; id: number }
+
+function reducer(state: State, action: Action): State {
+  switch (action.type) {
+    case 'add': return { ...state, todos: [...state.todos, ...] }
+    case 'toggle': return { ...state, todos: state.todos.map(...) }
+  }
+}
+
+const [state, dispatch] = useReducer(reducer, initial)
+dispatch({ type: 'add', text: '...' })`}
+        />
+        <p className='mt-5 text-gray-700'>
+          다음은 <b>TanStack Query</b> 🚀
+        </p>
+      </StageFlow.Next>
+    </StageFlow>
   )
 }

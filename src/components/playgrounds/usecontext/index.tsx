@@ -1,37 +1,38 @@
-import GoalViz from './GoalViz'
 import ThemeTree from './ThemeTree'
-import PlaygroundSection from '@/components/stages/PlaygroundSection'
+import CodeBlock from '@/components/stages/CodeBlock'
+import StageFlow from '@/components/stages/StageFlow'
 
 export default function UseContextPlayground() {
   return (
-    <div className='flex flex-col gap-12'>
-      <div className='rounded-2xl bg-linear-to-br from-[#fff5f4] to-[#ffe8e3] p-5'>
-        <div className='flex items-start gap-3'>
-          <span className='text-3xl'>🎮</span>
-          <div>
-            <div className='font-extrabold'>
-              깊은 트리까지 값을 내려보는 통로
-            </div>
-            <p className='mt-1 text-sm text-gray-700'>
-              Provider 아래 3단 깊이의 자식까지 테마가 내려가는 걸 확인. value
-              useMemo 토글로 리렌더 범위가 어떻게 바뀌는지도 함께.
-            </p>
-          </div>
-        </div>
-      </div>
+    <StageFlow>
+      <StageFlow.Empathy>
+        🌐 &quot;props 3단 내려보내기 귀찮아&quot; — Context는 주입 통로야.
+      </StageFlow.Empathy>
 
-      <GoalViz />
-
-      <div className='border-t border-gray-200' />
-
-      <PlaygroundSection
-        index='A'
-        emoji='🌲'
-        title='ThemeTree — Provider · 구독 · 리렌더'
-        description='Context Provider + 깊은 자식 + useMemo로 value 안정화. 구독자와 비구독자의 리렌더 횟수 차이까지 한눈에.'
-      >
+      <StageFlow.Play subtitle='테마 토글 + value useMemo 토글 둘 다'>
         <ThemeTree />
-      </PlaygroundSection>
-    </div>
+      </StageFlow.Play>
+
+      <StageFlow.Observe title='🤔 useMemo 끄면 비구독자까지 불안정'>
+        <p>🟢 Provider value가 매 렌더 새 객체면 구독자 전원이 리렌더.</p>
+        <p className='mt-3'>
+          🟢 <code>useMemo</code>로 고정하면 진짜 바뀔 때만 반응.
+        </p>
+      </StageFlow.Observe>
+
+      <StageFlow.Next subtitle='코드 + 정리 + 다음'>
+        <p className='mb-4'>
+          ✔️ Context는 <b>드물게 바뀌는 전역값</b>에만. 자주 바뀌면 Zustand.
+        </p>
+        <CodeBlock
+          filename='안정적인 Provider'
+          code={`const value = useMemo(() => ({ theme, toggle }), [theme, toggle])
+return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>`}
+        />
+        <p className='mt-5 text-gray-700'>
+          다음은 <b>useReducer</b> 🚀
+        </p>
+      </StageFlow.Next>
+    </StageFlow>
   )
 }
