@@ -5,8 +5,8 @@ import { jetbrainsMono } from './fonts'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: '🎮 React Playground',
-  description: '개념을 눌러보고, 망가뜨리고, 체화하는 놀이터',
+  title: '🎮 React Quest',
+  description: '개념을 눌러보고, 망가뜨리고, 체험하는 놀이터',
 }
 
 export default function RootLayout({
