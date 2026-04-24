@@ -1,18 +1,18 @@
 import { cva } from 'class-variance-authority'
 
 export const stageCardVariants = cva(
-  'relative overflow-hidden rounded-[20px] border-2 p-6 transition-all duration-300',
+  'relative overflow-hidden rounded-2xl bg-white p-6 ring-1 transition-all duration-300',
   {
     variants: {
       status: {
-        locked: 'border-gray-200 bg-gray-50/80 opacity-55',
+        locked: 'opacity-55 ring-gray-100',
         active:
-          'border-[#4576fc] bg-white shadow-[0_0_0_4px_#e7edff] hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-8px_rgba(0,0,0,0.1)]',
+          'ring-gray-100 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-8px_rgba(69,118,252,0.25)] hover:ring-blue-300',
         completed:
-          'border-[#10b981] bg-[#d1fae5] hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-8px_rgba(0,0,0,0.1)]',
+          'ring-blue-300 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-8px_rgba(69,118,252,0.25)]',
       },
       boss: {
-        true: 'border-[#8b5cf6] bg-gradient-to-br from-white to-[#f5f3ff]',
+        true: 'ring-violet-300',
         false: '',
       },
     },

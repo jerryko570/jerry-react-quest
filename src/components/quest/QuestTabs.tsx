@@ -2,7 +2,6 @@
 
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-import Text from '@/components/ui/Text'
 import {
   allStages,
   categoryMeta,
@@ -58,19 +57,19 @@ export default function QuestTabs({ initialTab }: QuestTabsProps) {
         })}
       </nav>
 
-      <header className='mb-6 flex items-baseline gap-3'>
-        <Text as='h4' className='font-extrabold'>
+      <header className='mb-3 flex items-baseline gap-3'>
+        <h3 className='text-2xl font-extrabold text-gray-900'>
           {activeMeta.emoji} {activeMeta.label}
-        </Text>
+        </h3>
         {activeMeta.badge && (
-          <Text as='body' className='font-bold text-[#4576fc]'>
+          <span className='text-sm font-bold text-blue-500'>
             {activeMeta.badge}
-          </Text>
+          </span>
         )}
       </header>
-      <Text as='p' className='mb-8 text-gray-500'>
+      <p className='mb-8 text-sm font-medium text-gray-500'>
         {activeMeta.sublabel}
-      </Text>
+      </p>
 
       <StageList stages={visible} />
     </div>
@@ -99,10 +98,10 @@ function TabButton({
       className={cn(
         'inline-flex shrink-0 items-center gap-2 rounded-full border-2 px-5 py-2.5 text-sm font-bold transition-all duration-200',
         isActive
-          ? 'border-[#4576fc] bg-[#4576fc] text-white shadow-[0_4px_12px_-4px_rgba(69,118,252,0.5)]'
+          ? 'border-blue-500 bg-blue-500 text-white shadow-[0_4px_12px_-4px_rgba(69,118,252,0.5)]'
           : cleared
-            ? 'border-emerald-400 bg-emerald-50 text-emerald-800 hover:bg-emerald-100'
-            : 'border-gray-200 bg-white text-gray-700 hover:border-[#4576fc] hover:text-[#4576fc]'
+            ? 'border-blue-300 bg-blue-200 text-blue-700 hover:bg-blue-300'
+            : 'border-gray-200 bg-white text-gray-700 hover:border-blue-500 hover:text-blue-500'
       )}
     >
       <span>{meta.emoji}</span>
@@ -110,7 +109,7 @@ function TabButton({
       {cleared && !isActive && <span className='text-xs'>👑</span>}
       {meta.badge && !cleared && (
         <span
-          className={cn('text-xs', isActive ? 'text-white' : 'text-[#4576fc]')}
+          className={cn('text-xs', isActive ? 'text-white' : 'text-blue-500')}
         >
           {meta.badge}
         </span>
@@ -121,7 +120,7 @@ function TabButton({
           isActive
             ? 'bg-white/20 text-white'
             : cleared
-              ? 'bg-emerald-200 text-emerald-900'
+              ? 'bg-blue-300 text-blue-700'
               : 'bg-gray-100 text-gray-500'
         )}
       >
