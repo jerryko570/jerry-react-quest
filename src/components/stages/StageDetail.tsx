@@ -19,7 +19,7 @@ export default function StageDetail({ stage }: Props) {
   const Playground = playgrounds[stage.id]
 
   return (
-    <Section padding='md' maxWidth='max-w-3xl'>
+    <Section padding='md' maxWidth='max-w-5xl'>
       <nav className='mb-8 flex flex-wrap items-center gap-1.5 text-sm text-gray-500'>
         <Link href='/' className='hover:text-blue-500'>
           🎮 Quest
