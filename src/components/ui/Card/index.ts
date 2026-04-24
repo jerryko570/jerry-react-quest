@@ -1,3 +1,6 @@
 export { default } from './Card'
+export { default as HighlightCard } from './HighlightCard'
+export { default as FeatureCard } from './FeatureCard'
+export { default as NumberCard } from './NumberCard'
 export { CardVariant } from './Card.variants'
-export type { CardTheme } from './Card.variants'
+export type { CardTheme, CardVariantProps } from './Card.variants'

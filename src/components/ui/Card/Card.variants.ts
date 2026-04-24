@@ -1,11 +1,11 @@
 import { cva, type VariantProps } from 'class-variance-authority'
 
-export const CardVariant = cva('flex rounded-lg', {
+export const CardVariant = cva('flex rounded-2xl transition-all duration-300', {
   variants: {
     theme: {
       dark: 'bg-gray-800 text-white',
       gray: 'bg-gray-100 text-gray-900',
-      white: 'bg-white text-gray-900',
+      white: 'bg-white text-gray-900 ring-1 ring-gray-100',
       lightOrange: 'bg-orange-50 text-gray-900',
       sky: 'bg-blue-500 text-white',
       lightSky: 'bg-blue-200 text-gray-900',
@@ -20,7 +20,7 @@ export const CardVariant = cva('flex rounded-lg', {
       lg: 'p-10',
     },
     interactive: {
-      true: 'cursor-pointer transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg',
+      true: 'cursor-pointer hover:-translate-y-0.5 hover:shadow-lg',
       false: '',
     },
   },
